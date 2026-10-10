@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import "./globals.css";
+export const metadata:Metadata={metadataBase:new URL(process.env.NEXT_PUBLIC_SITE_URL||"http://localhost:3000"),title:{default:"Sooru & Stories | Good Food, Great Stories",template:"%s | Sooru & Stories"},description:"Explore South Indian favourites, biryani, signature starters and refreshing drinks at Sooru & Stories.",openGraph:{type:"website",siteName:"Sooru & Stories",title:"Sooru & Stories",description:"Good Food, Great Stories, Beautiful Memories."},robots:{index:true,follow:true}};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en-IN"><body>{children}</body></html>}

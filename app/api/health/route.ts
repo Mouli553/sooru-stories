@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";import {integrationStatus} from "@/lib/config";export const dynamic="force-dynamic";export function GET(){return NextResponse.json({status:"ok",app:"sooru-stories-commerce",mode:"configuration-pending",integrations:integrationStatus},{headers:{"Cache-Control":"no-store"}})}

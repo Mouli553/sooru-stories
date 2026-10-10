@@ -1,0 +1,17 @@
+export type MenuItem = { id: string; slug: string; name: string; category: string; description: string; pricePaise: number; vegetarian: boolean; available: boolean; image: string; };
+// Prices are stored in paise. The 8 rasam prices were supplied by the owner; other catalogue prices below are provisional draft content and must be confirmed before launch.
+export const menuItems: MenuItem[] = [
+ {id:"rasam-thakkali",slug:"thakkali-rasam",name:"Thakkali Rasam",category:"Digest & Eat",description:"Tangy tomato rasam with a light, comforting spice profile.",pricePaise:7000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-pacha-puli",slug:"pacha-puli-rasam",name:"Pacha Puli Rasam",category:"Digest & Eat",description:"Fresh tamarind-led rasam with bright sour notes.",pricePaise:8000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-milagu",slug:"milagu-rasam",name:"Milagu Rasam",category:"Digest & Eat",description:"Pepper-forward and warming with a gentle, comforting heat.",pricePaise:9000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-pudhina",slug:"pudhina-rasam",name:"Pudhina Rasam",category:"Digest & Eat",description:"Fresh mint gives this aromatic rasam a clean herbal finish.",pricePaise:8000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-kollu",slug:"kollu-parupu-rasam",name:"Kollu Parupu Rasam",category:"Digest & Eat",description:"Earthy horse-gram and lentil flavours with traditional depth.",pricePaise:9000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-parupu",slug:"parupu-rasam",name:"Parupu Rasam",category:"Digest & Eat",description:"Gentle lentil rasam with homestyle comfort and balanced spices.",pricePaise:8000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-modakathan",slug:"modakathan-rasam",name:"Modakathan Rasam",category:"Digest & Eat",description:"A distinctive herbal rasam with an earthy aromatic character.",pricePaise:9000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"rasam-murunga-keerai",slug:"murunga-keerai-rasam",name:"Murunga Keerai Rasam",category:"Digest & Eat",description:"A peppery, herbal rasam with a comforting South Indian finish.",pricePaise:8000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"},
+ {id:"starter-madurai-fire-chicken",slug:"madurai-fire-chicken",name:"Madurai Fire Chicken",category:"Signature Starters",description:"Spicy crispy chicken with a bold South Indian seasoning.",pricePaise:25000,vegetarian:false,available:true,image:"/images/food-placeholder.svg"},
+ {id:"biryani-ambur",slug:"ambur-royal-biryani",name:"Ambur Royal Biryani",category:"Biryani & Rice",description:"Ambur-style chicken biryani with fragrant rice and warming spices.",pricePaise:27000,vegetarian:false,available:true,image:"/images/food-placeholder.svg"},
+ {id:"mocktail-nannari",slug:"nannari-fizz",name:"Nannari Fizz",category:"Refreshing Mocktails",description:"Classic nannari flavours with a sparkling, refreshing finish.",pricePaise:13000,vegetarian:true,available:true,image:"/images/food-placeholder.svg"}
+];
+export const formatINR = (paise:number) => new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(paise/100);
+export const getProduct = (slug:string) => menuItems.find((item)=>item.slug===slug && item.available);

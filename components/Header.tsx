@@ -1,0 +1,1 @@
+export default function Header(){return <header className="site-header"><a className="brand" href="/">Sooru <span>&amp;</span> Stories</a><nav aria-label="Main navigation"><a href="/">Home</a><a href="/menu">Menu</a><a href="/#digest">Digest &amp; Eat</a><a href="/#booking">Table Booking</a><a href="/cart">Cart</a><a href="/account">Account</a></nav></header>}
