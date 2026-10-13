@@ -1243,30 +1243,161 @@ h3 {
   color: var(--cream-muted);
 }
 
-/* Floating WhatsApp Concierge */
+/* ==========================================================================
+   ELEVATED WHATSAPP CONCIERGE UI
+   ========================================================================== */
+.wa-concierge-pill,
 .floating-whatsapp {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 24px;
+  right: 24px;
   z-index: 850;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #25D366;
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: var(--radius-full);
-  font-weight: 700;
-  font-size: 14px;
-  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-  transition: var(--transition);
+  gap: 12px;
+  background: #FFFDF9;
+  color: #30251E;
+  padding: 8px 18px 8px 10px;
+  border-radius: 9999px;
+  border: 1px solid #E3D8CA;
+  box-shadow: 0 10px 28px rgba(48, 37, 30, 0.12), 0 2px 6px rgba(48, 37, 30, 0.05);
   cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  user-select: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
+.wa-concierge-pill:hover,
 .floating-whatsapp:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 12px 35px rgba(37, 211, 102, 0.55);
+  transform: translateY(-3px) scale(1.02);
+  border-color: #CDA18E;
+  box-shadow: 0 16px 36px rgba(48, 37, 30, 0.16), 0 4px 10px rgba(48, 37, 30, 0.08);
+  background: #FFFFFF;
 }
+
+.wa-concierge-pill:active,
+.floating-whatsapp:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.wa-concierge-avatar {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.35);
+}
+
+.wa-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.wa-pulse-dot {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 9px;
+  height: 9px;
+  background: #10B981;
+  border: 2px solid #FFFDF9;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: waPulse 2s infinite;
+}
+
+@keyframes waPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.wa-concierge-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.wa-concierge-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #9B4E39;
+}
+
+.wa-online-tag {
+  font-size: 9px;
+  color: #15803D;
+  background: rgba(21, 128, 61, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.wa-concierge-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #30251E;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wa-concierge-pill:hover .wa-concierge-title {
+  color: #A34E36;
+}
+
+.wa-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 13px;
+}
+
+.wa-concierge-pill:hover .wa-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 640px) {
+  .wa-concierge-pill {
+    bottom: 20px;
+    right: 18px;
+    padding: 7px 14px 7px 8px;
+  }
+  .wa-concierge-avatar {
+    width: 34px;
+    height: 34px;
+  }
+  .wa-icon {
+    width: 18px;
+    height: 18px;
+  }
+  .wa-concierge-eyebrow {
+    font-size: 9px;
+  }
+  .wa-concierge-title {
+    font-size: 12.5px;
+  }
+}
+
 
 /* Global Toast Notification */
 .toast-banner {
@@ -1597,7 +1728,6 @@ h1, h2, h3, h4 { color: #30251e; }
 .payment-card small { color: #786d62; }
 .payment-card.active { background: #f3e8df; border-color: #a34e36; box-shadow: none; }
 .toast-banner { background: #30251e; border-color: #30251e; color: #fffaf2; }
-.floating-whatsapp { bottom: 24px; right: 24px; padding: 12px 18px; border-radius: 5px; box-shadow: 0 8px 22px rgba(28, 92, 57, .22); }
 
 .form-control, input, textarea, select { color: #30251e; }
 .form-control { background: #fffdfa !important; border: 1px solid #d9cfc2; }
