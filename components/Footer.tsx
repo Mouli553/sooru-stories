@@ -26,11 +26,13 @@ export default function Footer() {
             <h4>Explore Menu</h4>
             <ul className="footer-links">
               <li><Link href="/menu?category=Digest%20%26%20Eat">Digest &amp; Eat (8 Rasams)</Link></li>
-              <li><Link href="/menu?category=Biryani%20%26%20Rice">Biryani &amp; Fragrant Rice</Link></li>
               <li><Link href="/menu?category=Signature%20Starters">Signature Starters</Link></li>
+              <li><Link href="/menu?category=Signature%20Non-Veg">Signature Non-Veg</Link></li>
+              <li><Link href="/menu?category=Biryani%20%26%20Rice">Biryani &amp; Fragrant Rice</Link></li>
               <li><Link href="/menu?category=South%20Indian%20Specials">South Indian Specials</Link></li>
-              <li><Link href="/menu?category=Refreshing%20Mocktails">Craft Mocktails &amp; Coolers</Link></li>
-              <li><Link href="/menu?category=Artisanal%20Desserts">Heritage Desserts</Link></li>
+              <li><Link href="/menu?category=Modern%20Fusion">Modern Fusion</Link></li>
+              <li><Link href="/menu?category=Mocktails">Craft Mocktails &amp; Coolers</Link></li>
+              <li><Link href="/menu?category=Desserts">Heritage Desserts</Link></li>
             </ul>
           </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { formatINR, menuItems } from "@/lib/menu";
 
 interface OrderRecord {
@@ -151,6 +152,12 @@ export default function AdminPage() {
               Unlock Dashboard →
             </button>
           </form>
+
+          <div style={{ marginTop: 24 }}>
+            <Link href="/" style={{ color: "var(--gold-light)", fontSize: 13, textDecoration: "none" }}>
+              ← Return to Storefront
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -159,6 +166,13 @@ export default function AdminPage() {
   return (
     <div style={{ paddingTop: 100, minHeight: "85vh" }}>
       <div className="container" style={{ padding: "30px 24px 80px" }}>
+        {/* Breadcrumb Navigation */}
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Storefront</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Admin Control Tower</span>
+        </div>
+
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 30, flexWrap: "wrap", gap: 16 }}>
           <div>

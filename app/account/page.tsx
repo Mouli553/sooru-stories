@@ -90,6 +90,12 @@ export default function AccountPage() {
   return (
     <div style={{ paddingTop: 110, minHeight: "85vh" }}>
       <div className="container" style={{ padding: "40px 24px 80px", maxWidth: 960 }}>
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Account</span>
+        </div>
+
         <div className="section-header" style={{ textAlign: "left", marginBottom: 32 }}>
           <div className="eyebrow">Customer Account</div>
           <h1>Welcome, {customerName}</h1>

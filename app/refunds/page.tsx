@@ -11,6 +11,12 @@ export default function RefundsPage() {
   return (
     <div style={{ paddingTop: 110, minHeight: "80vh" }}>
       <div className="container" style={{ padding: "40px 24px 80px", maxWidth: 860 }}>
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Refunds</span>
+        </div>
+
         <div className="section-header" style={{ textAlign: "left", marginBottom: 36 }}>
           <div className="eyebrow">Customer Protection</div>
           <h1>Cancellations &amp; Refund Policy</h1>

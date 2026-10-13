@@ -67,7 +67,7 @@ export default async function ProductDetailPage({
       <div className="container" style={{ padding: "40px 24px 80px" }}>
         {/* Breadcrumb */}
         <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 28 }}>
-          <Link href="/" style={{ color: "var(--gold-light)" }}>Home</Link>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
           <span style={{ margin: "0 8px" }}>/</span>
           <Link href="/menu" style={{ color: "var(--gold-light)" }}>Menu</Link>
           <span style={{ margin: "0 8px" }}>/</span>
@@ -78,7 +78,7 @@ export default async function ProductDetailPage({
           <span style={{ color: "var(--cream)" }}>{dish.name}</span>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 50, alignItems: "start", marginBottom: 70 }}>
+        <div className="dish-detail-grid">
           {/* Media Column */}
           <div style={{ position: "relative" }}>
             <Image
@@ -223,6 +223,15 @@ export default async function ProductDetailPage({
             </div>
           </div>
         )}
+
+        <div style={{ marginTop: 60, textAlign: "center", display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+          <Link href="/menu" className="btn btn-secondary">
+            ← Explore Full Menu
+          </Link>
+          <Link href="/" className="btn btn-secondary">
+            ← Back to Home
+          </Link>
+        </div>
       </div>
 
       <script

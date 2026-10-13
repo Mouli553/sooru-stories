@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { trackLead } from "@/lib/analytics";
 
 const RESTAURANT_WHATSAPP = "919876543210";
@@ -42,6 +43,12 @@ export default function ContactPage() {
   return (
     <div style={{ paddingTop: 110, minHeight: "80vh" }}>
       <div className="container" style={{ padding: "40px 24px 80px", maxWidth: 1000 }}>
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Contact</span>
+        </div>
+
         <div className="section-header" style={{ marginBottom: 40 }}>
           <div className="eyebrow">Direct Contact &amp; Catering</div>
           <h1>Get in Touch with Our Kitchen</h1>

@@ -40,11 +40,18 @@ function MenuContent() {
   return (
     <div style={{ paddingTop: 100, minHeight: "80vh" }}>
       <div className="container" style={{ padding: "40px 24px 80px" }}>
+        {/* Breadcrumb */}
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Menu</span>
+        </div>
+
         <div className="section-header" style={{ marginBottom: 36 }}>
           <div className="eyebrow">The Complete Culinary Archive</div>
           <h1>Menu &amp; Homestyle Prices</h1>
           <p className="muted">
-            All 22 dishes prepared to order with fresh stone-ground spices, cold-pressed oils, 
+            All {menuItems.length} dishes prepared to order with fresh stone-ground spices, cold-pressed oils, 
             and pure country ghee. Prices listed in INR with zero hidden packaging surcharges.
           </p>
         </div>

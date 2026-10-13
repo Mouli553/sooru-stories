@@ -22,7 +22,7 @@ export default function RasamChronicles() {
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 36, alignItems: "center", marginBottom: 40 }}>
+        <div className="rasam-chronicles-layout">
           <div style={{ position: "relative" }}>
             <Image
               src="/images/rasam-chronicles.jpg"

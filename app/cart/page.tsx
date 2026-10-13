@@ -22,6 +22,15 @@ export default function CartPage() {
   return (
     <div style={{ paddingTop: 110, minHeight: "80vh" }}>
       <div className="container" style={{ padding: "40px 24px 80px", maxWidth: 900 }}>
+        {/* Breadcrumb */}
+        <div style={{ fontSize: 13, color: "var(--cream-muted)", marginBottom: 20 }}>
+          <Link href="/" style={{ color: "var(--gold-light)" }}>← Home</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <Link href="/menu" style={{ color: "var(--gold-light)" }}>Menu</Link>
+          <span style={{ margin: "0 8px" }}>/</span>
+          <span style={{ color: "var(--cream)" }}>Cart</span>
+        </div>
+
         <div className="section-header" style={{ textAlign: "left", marginBottom: 30 }}>
           <div className="eyebrow">Your Selection</div>
           <h1>Shopping Cart</h1>

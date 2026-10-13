@@ -8,7 +8,7 @@ import { menuItems, formatINR } from "@/lib/menu";
 
 export default function HeroSection() {
   const { addToCart, openBookingModal } = useCart();
-  const spotlightItem = menuItems.find((i) => i.id === "biryani-ambur") || menuItems[0];
+  const spotlightItem = menuItems.find((i) => i.id === "biryani-ambur-royal") || menuItems.find((i) => i.bestseller) || menuItems[0];
 
   return (
     <section className="hero-section">

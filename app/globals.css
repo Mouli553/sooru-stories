@@ -1423,3 +1423,31 @@ h3 {
     padding-top: 110px;
   }
 }
+
+/* Enhanced Responsive Layout Utilities */
+.dish-detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 50px;
+  align-items: start;
+  margin-bottom: 70px;
+}
+
+.rasam-chronicles-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+  .dish-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .rasam-chronicles-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
