@@ -64,6 +64,13 @@ export default function Header() {
           >
             Reviews
           </Link>
+          <Link
+            href="/account"
+            className="nav-link"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Account
+          </Link>
         </nav>
 
         <div className="nav-actions">

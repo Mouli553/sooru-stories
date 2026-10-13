@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { MenuItem } from "./menu";
 
 export interface CartItem {
@@ -27,6 +27,7 @@ interface CartContextType {
   closeBookingModal: () => void;
   toastMessage: string | null;
   showToast: (msg: string) => void;
+  syncWithServer: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -41,7 +42,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Hydrate from localStorage
+  // Sync to backend API (cross-device persistence)
+  const syncWithServer = useCallback(async () => {
+    try {
+      if (items.length > 0) {
+        await fetch("/api/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            items: items.map((i) => ({ productId: i.product.id, quantity: i.quantity }))
+          })
+        });
+      }
+    } catch {
+      // Non-blocking sync
+    }
+  }, [items]);
+
+  // Hydrate from localStorage and check backend cart
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -52,6 +70,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       // LocalStorage unavailable
     }
     setIsLoaded(true);
+
+    // Check if server has authenticated cart
+    fetch("/api/cart")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && data.authenticated && Array.isArray(data.items) && data.items.length > 0) {
+          setItems(data.items);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   // Sync to localStorage
@@ -133,7 +161,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         openBookingModal: () => setIsBookingModalOpen(true),
         closeBookingModal: () => setIsBookingModalOpen(false),
         toastMessage,
-        showToast
+        showToast,
+        syncWithServer
       }}
     >
       {children}

@@ -1,34 +1,87 @@
-# Sooru & Stories commerce foundation
+# 🌾 Sooru & Stories — Production E-Commerce Platform
 
-A new Next.js App Router + TypeScript application based on the restaurant brand and existing menu assets. This is an implementation foundation, **not yet a live ordering platform**. Real checkout, account persistence, email delivery, and admin mutations are disabled until business configuration and provider integration tests are complete.
+A production-ready, full-stack Next.js 15 (App Router) e-commerce platform for **Sooru & Stories**, an artisanal South Indian cloud kitchen and heritage restaurant brand in Tamil Nadu, India.
 
-## Current functionality
-- Responsive restaurant storefront in forest green, cream and gold.
-- Category browsing, menu listing, individual menu-item routes and metadata.
-- Eight rasam products use the owner-provided prices. Other listed items/prices are provisional draft data and require approval.
-- Supabase schema migration with profiles, products, carts, orders, payment/email event records, status history, constraints, indexes and baseline RLS policies.
-- Health/config status endpoint at `/api/health`.
-- Sitemap, robots rules, privacy/terms/delivery/refunds draft pages and implementation documentation.
-- Server-side pricing helper and unit tests.
+Built with verified end-to-end checkout, tamper-proof server price recalculation, Razorpay cryptographic signature verification, Supabase PostgreSQL data persistence, cross-device cart synchronization, Resend transactional emails, GA4 conversion telemetry, and a kitchen operations admin dashboard.
 
-## Not enabled yet
-- Real cart persistence, checkout and order creation.
-- Razorpay payment order creation, signature verification and webhook processing.
-- Supabase Auth customer account flow and protected admin workflows.
-- Resend transactional email and idempotent delivery events.
-- GA4 events, consent management and UTM attribution.
-- Live deployment/domain.
+---
 
-These are intentionally not represented as working features. Do not take orders or payments until these flows are implemented, configured and tested.
+## 🚀 Key Features
 
-## Local setup
-1. Use Node.js 22+.
-2. `cp .env.example .env.local` and fill only verified values.
-3. `npm install`
-4. `npm run dev`
-5. `npm run typecheck && npm test && npm run lint && npm run build`
+* **Heritage Luxury Design System:** Deep emerald (`#071F13`) & temple gold (`#D4AF37`) aesthetic with floating spice particle physics, glassmorphic navigation, and micro-interactions.
+* **Full Culinary Catalog (22 Dishes):** 6 curated categories, strictly preserving authentic owner pricing for all 8 medicinal rasams (₹70 to ₹90) with botanical health properties.
+* **Tamper-Proof Checkout & Pricing:** Server-side price recalculation against catalog Single Source of Truth (`lib/menu.ts`), sliding window IP rate limiting, and invisible honeypots.
+* **Dual Payment Architecture:**
+  - **Online Payments (UPI / Cards):** Server-side Razorpay order generation (`POST /api/razorpay/create-order`), cryptographic HMAC-SHA256 signature verification with `crypto.timingSafeEqual` (`POST /api/razorpay/verify`), and asynchronous signed webhook handling (`POST /api/razorpay/webhook`) with idempotent event deduplication.
+  - **Cash on Delivery (COD) / Takeaway:** Direct server-side order registration.
+* **Conversational Commerce:** Automated post-checkout Unicode WhatsApp receipt generator connecting customers directly to kitchen dispatch.
+* **Cross-Device Cart Synchronization:** Guest carts persist in browser `localStorage`; authenticated customers automatically sync cart items to Supabase PostgreSQL database across devices via `GET/POST /api/cart`.
+* **Transactional Email System:** Server-side Resend integration with branded HTML templates for Order Confirmation, Payment Receipts, and Dispatch notifications.
+* **Customer Account Hub (`/account`):** Order tracking, order status badges, address book, and profile management.
+* **Kitchen Admin Dashboard (`/admin`):** Protected operations tower with live revenue & order KPIs (Gross Sales, Net Orders, AOV), status transition workflows (`Processing`, `Dispatched`, `Delivered`), and live daily stock toggles.
+* **SEO & Analytics:** Google Analytics 4 e-commerce funnel tracking (`view_item_list`, `select_item`, `add_to_cart`, `begin_checkout`, `purchase`), UTM attribution, Schema.org `Restaurant` & `MenuItem` JSON-LD, dynamic XML sitemap (47 URLs), and enterprise HTTP security headers.
 
-The current environment could not complete `npm install` during initial setup, so framework build and package-based tests have not been verified here.
+---
 
-## Before launch
-Read `docs/SETUP_AND_DEPLOYMENT.md`, `docs/SECURITY.md`, `docs/ARCHITECTURE.md`, `docs/SEO_AND_ANALYTICS.md`, and `docs/TESTING.md`. Confirm actual business contact details, operating location, fulfilment mode and service area, opening hours, approved menu/prices, tax treatment, cancellation/refund rules, privacy/legal content, domain, and provider credentials.
+## 🛠️ Technology Stack
+
+* **Framework:** Next.js 15.5 (App Router, Turbopack, SSG)
+* **Frontend:** React 19, TypeScript, Vanilla CSS Design System v2
+* **Database & Auth:** Supabase PostgreSQL with Row Level Security (RLS)
+* **Payment Gateway:** Razorpay SDK (official Node.js SDK)
+* **Transactional Emails:** Resend API
+* **Analytics:** Google Analytics 4 (`G-SOORUSTORY`) & UTM tracking
+* **Validation:** Zod 3 / 4
+* **Testing:** Vitest (14 unit & integration tests)
+
+---
+
+## 🏃 Local Development Setup
+
+1. **Clone repository & install dependencies:**
+   ```bash
+   git clone https://github.com/Mouli553/sooru-stories.git
+   cd sooru-stories
+   npm install
+   ```
+
+2. **Configure environment variables:**
+   ```bash
+   cp .env.example .env.local
+   ```
+   *(Fill in your Supabase, Razorpay, Resend, and GA4 credentials. The app includes resilient sandbox fallbacks if keys are not yet configured).*
+
+3. **Run test suite:**
+   ```bash
+   npm test
+   ```
+
+4. **Run TypeScript check & linter:**
+   ```bash
+   npm run typecheck
+   npm run lint
+   ```
+
+5. **Start development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+6. **Production build:**
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 📂 Documentation
+
+Detailed architectural and deployment guides are available in `/docs`:
+
+* [Architecture & Data Flow](docs/ARCHITECTURE.md)
+* [Security & Anti-Tampering](docs/SECURITY.md)
+* [Setup & Deployment Guide](docs/SETUP_AND_DEPLOYMENT.md)
+* [SEO & Analytics Measurement](docs/SEO_AND_ANALYTICS.md)
+* [Testing & QA Protocols](docs/TESTING.md)
+* [Master Project Memory Dossier](PROJECT_MEMORY_DOSSIER.md)

@@ -42,6 +42,8 @@ export default function Footer() {
               <li><Link href="/#testimonials">Customer Reviews</Link></li>
               <li><Link href="/contact">Catering &amp; Bulk Orders</Link></li>
               <li><Link href="/faq">Frequently Asked Questions</Link></li>
+              <li><Link href="/account">My Account &amp; Past Orders</Link></li>
+              <li><Link href="/admin">Kitchen Operations &amp; Admin</Link></li>
             </ul>
           </div>
 
