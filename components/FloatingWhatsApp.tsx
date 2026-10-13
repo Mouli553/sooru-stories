@@ -16,19 +16,19 @@ export default function FloatingWhatsApp() {
 
   return (
     <aside
-      className="wa-concierge-pill"
+      className="wa-circle-glide-trigger"
       onClick={handleClick}
       role="button"
       tabIndex={0}
       aria-label="Order on WhatsApp via Kitchen Concierge"
-      title="Chat with Kitchen Concierge on WhatsApp"
+      title="Direct Kitchen WhatsApp Concierge"
     >
-      <div className="wa-concierge-avatar">
+      <div className="wa-circle-icon-badge">
         <svg
           className="wa-icon"
           viewBox="0 0 24 24"
-          width="19"
-          height="19"
+          width="22"
+          height="22"
           fill="currentColor"
           aria-hidden="true"
         >
@@ -37,14 +37,9 @@ export default function FloatingWhatsApp() {
         <span className="wa-pulse-dot" />
       </div>
 
-      <div className="wa-concierge-info">
-        <div className="wa-concierge-eyebrow">
-          <span>Kitchen Concierge</span>
-          <span className="wa-online-tag">Online</span>
-        </div>
-        <div className="wa-concierge-title">
-          Order on WhatsApp <span className="wa-arrow">→</span>
-        </div>
+      <div className="wa-glide-label">
+        <span className="wa-glide-eyebrow">Kitchen Concierge · Online</span>
+        <span className="wa-glide-title">Order on WhatsApp →</span>
       </div>
     </aside>
   );
