@@ -15,52 +15,48 @@ export default function HeroSection() {
       <div className="hero-bg" />
       <div className="hero-content">
         <div className="hero-left">
-          <div className="eyebrow">A Table Full of Living Heritage</div>
+          <div className="eyebrow">Sooru &amp; Stories · Tamil Nadu</div>
           <h1 className="hero-title">
-            Sooru &amp; Stories
-            <span>Good Food, Great Stories, Beautiful Memories.</span>
+            The warmth of home,
+            <span>served on a leaf.</span>
           </h1>
           <p className="hero-subtitle">
-            Relive the nostalgia of slow-cooked South Indian clay pot feasts, 
-            fragrant Seeraga Samba biryanis, and our signature 8 medicinal herbal rasams 
-            crafted with cold-pressed oils and stone-ground spices.
+            Slow-cooked clay pot feasts, fragrant Seeraga Samba biryani, and eight
+            traditional rasams — made with the care of a kitchen that feels like home.
           </p>
 
           <div className="hero-ctas">
             <Link href="/menu" className="btn btn-primary">
-              Explore Full Menu →
+              Explore the menu <span aria-hidden="true">↗</span>
             </Link>
             <button
               type="button"
               className="btn btn-secondary"
               onClick={openBookingModal}
             >
-              Reserve a Table 🪑
+              Reserve a table
             </button>
-            <a href="#rasam" className="btn btn-secondary">
-              The 8 Rasams 🍵
-            </a>
           </div>
 
           <div className="hero-badges">
             <div className="hero-badge-item">
               <span className="badge-stat">4.9 ★</span>
-              <span className="badge-label">500+ Google Reviews</span>
+              <span className="badge-label">Loved by our guests</span>
             </div>
             <div className="hero-badge-item">
               <span className="badge-stat">8 Rasams</span>
-              <span className="badge-label">Time-Honored Elixirs</span>
+              <span className="badge-label">A tradition worth keeping</span>
             </div>
             <div className="hero-badge-item">
               <span className="badge-stat">100% Pure</span>
-              <span className="badge-label">Native Country Ghee</span>
+              <span className="badge-label">Made with care, every day</span>
             </div>
           </div>
         </div>
 
         <div className="hero-right">
           <div className="hero-feature-card">
-            <span className="feature-tag">👑 Chef's Weekend Spotlight</span>
+            <span className="feature-tag">A favourite from our kitchen</span>
             <Image
               src={spotlightItem.image}
               alt={spotlightItem.name}
