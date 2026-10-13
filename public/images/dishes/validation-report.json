@@ -1,0 +1,25 @@
+{
+  "image_count": 64,
+  "category_counts": {
+    "Digest & Eat": 8,
+    "Signature Starters": 8,
+    "Signature Non-Veg Curries & Gravies": 8,
+    "Biryani & Fragrant Rice": 8,
+    "South Indian Specials & Tiffin": 8,
+    "Modern Fusion": 8,
+    "Mocktails & Traditional Coolers": 8,
+    "Heritage Desserts": 8
+  },
+  "missing_file_count": 0,
+  "missing_files": [],
+  "invalid_image_count": 0,
+  "invalid_images": [],
+  "extra_images": [],
+  "all_dimensions_1024_square": true,
+  "all_files_webp": true,
+  "source_files_missing": [],
+  "archive_size_bytes": 13590335,
+  "archive_entry_count": 66,
+  "archive_testzip_result": null,
+  "archive_verified": true
+}

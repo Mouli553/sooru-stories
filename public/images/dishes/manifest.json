@@ -1,0 +1,772 @@
+{
+  "assets": [
+    {
+      "filename": "thakkali-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Thakkali Rasam",
+      "description": "Country tomato rasam with crushed cumin and garlic.",
+      "relative_path": "rasams/thakkali-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 224178
+    },
+    {
+      "filename": "pacha-puli-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Pacha Puli Rasam",
+      "description": "Uncooked raw tamarind and shallot broth.",
+      "relative_path": "rasams/pacha-puli-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 169044
+    },
+    {
+      "filename": "milagu-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Milagu Rasam",
+      "description": "Black pepper and garlic rasam.",
+      "relative_path": "rasams/milagu-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 151596
+    },
+    {
+      "filename": "poondu-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Poondu Rasam",
+      "description": "Slow-simmered garlic and coriander broth.",
+      "relative_path": "rasams/poondu-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 189800
+    },
+    {
+      "filename": "mudakathan-keerai-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Mudakathan Keerai Rasam",
+      "description": "Mudakathan balloon vine herbal rasam.",
+      "relative_path": "rasams/mudakathan-keerai-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 165584
+    },
+    {
+      "filename": "murungai-keerai-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Murungai Keerai Rasam",
+      "description": "Drumstick leaf broth.",
+      "relative_path": "rasams/murungai-keerai-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 176856
+    },
+    {
+      "filename": "kollu-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Kollu Rasam",
+      "description": "Horse gram rasam.",
+      "relative_path": "rasams/kollu-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 205500
+    },
+    {
+      "filename": "kandathippili-rasam.webp",
+      "category": "Digest & Eat",
+      "dish_name": "Kandathippili Rasam",
+      "description": "Long pepper medicinal root rasam.",
+      "relative_path": "rasams/kandathippili-rasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 166194
+    },
+    {
+      "filename": "madurai-mutton-chukka.webp",
+      "category": "Signature Starters",
+      "dish_name": "Madurai Mutton Chukka",
+      "description": "Dry-roasted mutton with shallots and curry leaves.",
+      "relative_path": "starters/madurai-mutton-chukka.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 281064
+    },
+    {
+      "filename": "nethili-meen-varuval.webp",
+      "category": "Signature Starters",
+      "dish_name": "Nethili Meen Varuval",
+      "description": "Crispy spiced anchovy fry.",
+      "relative_path": "starters/nethili-meen-varuval.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 284588
+    },
+    {
+      "filename": "kozhi-chinthamani.webp",
+      "category": "Signature Starters",
+      "dish_name": "Kozhi Chinthamani",
+      "description": "Kongu-style dry red chilli chicken.",
+      "relative_path": "starters/kozhi-chinthamani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 282906
+    },
+    {
+      "filename": "vazhaipoo-vadai.webp",
+      "category": "Signature Starters",
+      "dish_name": "Vazhaipoo Vadai",
+      "description": "Crispy banana flower patties.",
+      "relative_path": "starters/vazhaipoo-vadai.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 247166
+    },
+    {
+      "filename": "mushroom-pepper-fry.webp",
+      "category": "Signature Starters",
+      "dish_name": "Mushroom Pepper Fry",
+      "description": "Button mushrooms with crushed Tellicherry pepper.",
+      "relative_path": "starters/mushroom-pepper-fry.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 281066
+    },
+    {
+      "filename": "paneer-ghee-roast.webp",
+      "category": "Signature Starters",
+      "dish_name": "Paneer Ghee Roast",
+      "description": "Ghee-roasted paneer cubes.",
+      "relative_path": "starters/paneer-ghee-roast.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 261550
+    },
+    {
+      "filename": "chettinad-crab-roast.webp",
+      "category": "Signature Starters",
+      "dish_name": "Chettinad Crab Roast",
+      "description": "Crab tossed in roasted spices.",
+      "relative_path": "starters/chettinad-crab-roast.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 273080
+    },
+    {
+      "filename": "baby-corn-milagu-varuval.webp",
+      "category": "Signature Starters",
+      "dish_name": "Baby Corn Milagu Varuval",
+      "description": "Crispy tempered baby corn.",
+      "relative_path": "starters/baby-corn-milagu-varuval.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 257818
+    },
+    {
+      "filename": "nattu-kozhi-kulambu.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Nattu Kozhi Kulambu",
+      "description": "Country chicken gravy served in an earthen pot.",
+      "relative_path": "curries-gravies/nattu-kozhi-kulambu.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 246818
+    },
+    {
+      "filename": "kongu-mutton-curry.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Kongu Mutton Curry",
+      "description": "Mutton curry with native shallots and coconut paste.",
+      "relative_path": "curries-gravies/kongu-mutton-curry.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 250680
+    },
+    {
+      "filename": "chettinad-meen-kulambu.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Chettinad Meen Kulambu",
+      "description": "Seer fish tamarind curry.",
+      "relative_path": "curries-gravies/chettinad-meen-kulambu.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 267202
+    },
+    {
+      "filename": "milagu-kozhi-varuval.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Milagu Kozhi Varuval",
+      "description": "Semi-gravy pepper chicken.",
+      "relative_path": "curries-gravies/milagu-kozhi-varuval.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 224660
+    },
+    {
+      "filename": "eral-thokku.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Eral Thokku",
+      "description": "Prawns in a concentrated tomato-onion reduction.",
+      "relative_path": "curries-gravies/eral-thokku.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 246506
+    },
+    {
+      "filename": "attukal-paya.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Attukal Paya",
+      "description": "Slow-cooked lamb trotter broth.",
+      "relative_path": "curries-gravies/attukal-paya.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 205188
+    },
+    {
+      "filename": "kaadai-pepper-roast.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Kaadai Pepper Roast",
+      "description": "Quail dry-roasted in country spices.",
+      "relative_path": "curries-gravies/kaadai-pepper-roast.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 256082
+    },
+    {
+      "filename": "mutton-brain-fry.webp",
+      "category": "Signature Non-Veg Curries & Gravies",
+      "dish_name": "Mutton Brain Fry",
+      "description": "Lamb brain sautéed with pepper and shallots.",
+      "relative_path": "curries-gravies/mutton-brain-fry.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 274368
+    },
+    {
+      "filename": "ambur-royal-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Ambur Royal Biryani",
+      "description": "Chicken biryani with short-grain Seeraga Samba rice.",
+      "relative_path": "biryani-rice/ambur-royal-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 260816
+    },
+    {
+      "filename": "dindigul-thalappakatti-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Dindigul Thalappakatti Biryani",
+      "description": "Peppery tender mutton biryani.",
+      "relative_path": "biryani-rice/dindigul-thalappakatti-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 235398
+    },
+    {
+      "filename": "chettinad-chicken-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Chettinad Chicken Biryani",
+      "description": "Spicy country-style chicken biryani.",
+      "relative_path": "biryani-rice/chettinad-chicken-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 237852
+    },
+    {
+      "filename": "rawther-dum-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Rawther Dum Biryani",
+      "description": "Fragrant mutton biryani with caramelised onions.",
+      "relative_path": "biryani-rice/rawther-dum-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 243194
+    },
+    {
+      "filename": "malabar-neychoru.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Malabar Neychoru",
+      "description": "Kaima rice ghee rice.",
+      "relative_path": "biryani-rice/malabar-neychoru.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 197702
+    },
+    {
+      "filename": "mushroom-samba-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Mushroom Samba Biryani",
+      "description": "Vegetarian mushroom biryani with Seeraga Samba rice.",
+      "relative_path": "biryani-rice/mushroom-samba-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 251744
+    },
+    {
+      "filename": "paneer-tikka-biryani.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Paneer Tikka Biryani",
+      "description": "Biryani with charred paneer.",
+      "relative_path": "biryani-rice/paneer-tikka-biryani.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 264500
+    },
+    {
+      "filename": "curd-rice-mor-milagai.webp",
+      "category": "Biryani & Fragrant Rice",
+      "dish_name": "Curd Rice Mor Milagai",
+      "description": "Creamy curd rice with pomegranate and sun-dried chillies.",
+      "relative_path": "biryani-rice/curd-rice-mor-milagai.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 190640
+    },
+    {
+      "filename": "madurai-bun-parotta.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Madurai Bun Parotta",
+      "description": "Multi-layered flaky bun parotta with salna.",
+      "relative_path": "tiffin-specials/madurai-bun-parotta.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 194396
+    },
+    {
+      "filename": "kothu-parotta.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Kothu Parotta",
+      "description": "Shredded parotta tossed with eggs and chicken salna.",
+      "relative_path": "tiffin-specials/kothu-parotta.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 240748
+    },
+    {
+      "filename": "ceylon-veechu-parotta.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Ceylon Veechu Parotta",
+      "description": "Thin, stretched envelope-style egg parotta.",
+      "relative_path": "tiffin-specials/ceylon-veechu-parotta.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 254298
+    },
+    {
+      "filename": "ghee-podi-thatte-idli.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Ghee Podi Thatte Idli",
+      "description": "Steamed disc idlis with ghee and idli podi.",
+      "relative_path": "tiffin-specials/ghee-podi-thatte-idli.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 236630
+    },
+    {
+      "filename": "karuveppilai-dosa.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Karuveppilai Dosa",
+      "description": "Crispy dosa spread with curry leaf paste.",
+      "relative_path": "tiffin-specials/karuveppilai-dosa.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 246212
+    },
+    {
+      "filename": "kari-dosa.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Kari Dosa",
+      "description": "Three-layered Madurai minced mutton dosa.",
+      "relative_path": "tiffin-specials/kari-dosa.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 209712
+    },
+    {
+      "filename": "appam-coconut-milk.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Appam Coconut Milk",
+      "description": "Lacy fermented rice hopper with sweet coconut milk.",
+      "relative_path": "tiffin-specials/appam-coconut-milk.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 226428
+    },
+    {
+      "filename": "kal-dosa-vadacurry.webp",
+      "category": "South Indian Specials & Tiffin",
+      "dish_name": "Kal Dosa Vadacurry",
+      "description": "Soft twin dosas with lentil vadacurry.",
+      "relative_path": "tiffin-specials/kal-dosa-vadacurry.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 214556
+    },
+    {
+      "filename": "chettinad-chicken-bao.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Chettinad Chicken Bao",
+      "description": "Steamed bao filled with shredded pepper chicken.",
+      "relative_path": "modern-fusion/chettinad-chicken-bao.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 208644
+    },
+    {
+      "filename": "ghee-roast-taco.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Ghee Roast Taco",
+      "description": "Flatbread tacos with ghee-roasted fillings.",
+      "relative_path": "modern-fusion/ghee-roast-taco.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 192598
+    },
+    {
+      "filename": "rasam-golgappa-shots.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Rasam Golgappa Shots",
+      "description": "Crisp puris served with herbal rasam shots.",
+      "relative_path": "modern-fusion/rasam-golgappa-shots.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 158068
+    },
+    {
+      "filename": "podi-crispy-fries.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Podi Crispy Fries",
+      "description": "Fries tossed in aromatic idli podi.",
+      "relative_path": "modern-fusion/podi-crispy-fries.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 229428
+    },
+    {
+      "filename": "madras-curry-arancini.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Madras Curry Arancini",
+      "description": "Crispy rice balls with spiced filling.",
+      "relative_path": "modern-fusion/madras-curry-arancini.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 196600
+    },
+    {
+      "filename": "pulled-mutton-quesadilla.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Pulled Mutton Quesadilla",
+      "description": "Toasted naan folded around slow-cooked mutton and cheese.",
+      "relative_path": "modern-fusion/pulled-mutton-quesadilla.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 204194
+    },
+    {
+      "filename": "gunpowder-corn-ribs.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Gunpowder Corn Ribs",
+      "description": "Charred corn ribs dusted with roasted spices.",
+      "relative_path": "modern-fusion/gunpowder-corn-ribs.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 222330
+    },
+    {
+      "filename": "sukka-glazed-wings.webp",
+      "category": "Modern Fusion",
+      "dish_name": "Sukka Glazed Wings",
+      "description": "Crispy wings coated in sweet-spicy chukka reduction.",
+      "relative_path": "modern-fusion/sukka-glazed-wings.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 231330
+    },
+    {
+      "filename": "nannari-sarbath.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Nannari Sarbath",
+      "description": "Sarsaparilla cooler with sabja seeds and lime.",
+      "relative_path": "drinks/nannari-sarbath.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 212700
+    },
+    {
+      "filename": "jigarthanda-royale.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Jigarthanda Royale",
+      "description": "Almond gum, nannari, condensed milk, basundi, and ice cream.",
+      "relative_path": "drinks/jigarthanda-royale.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 150698
+    },
+    {
+      "filename": "panakam-cooler.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Panakam Cooler",
+      "description": "Jaggery, dry ginger, cardamom, and holy basil drink.",
+      "relative_path": "drinks/panakam-cooler.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 211704
+    },
+    {
+      "filename": "spicy-guava-sip.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Spicy Guava Sip",
+      "description": "Pink guava juice with a chilli-salt rim.",
+      "relative_path": "drinks/spicy-guava-sip.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 171216
+    },
+    {
+      "filename": "elaneer-payasam-cooler.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Elaneer Payasam Cooler",
+      "description": "Tender coconut pulp with chilled coconut water.",
+      "relative_path": "drinks/elaneer-payasam-cooler.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 145158
+    },
+    {
+      "filename": "rose-milk-heritage.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Rose Milk Heritage",
+      "description": "Traditional aromatic chilled rose milk.",
+      "relative_path": "drinks/rose-milk-heritage.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 133912
+    },
+    {
+      "filename": "vasantha-neer.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Vasantha Neer",
+      "description": "Tender coconut water with lime and wild honey.",
+      "relative_path": "drinks/vasantha-neer.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 150940
+    },
+    {
+      "filename": "masala-buttermilk.webp",
+      "category": "Mocktails & Traditional Coolers",
+      "dish_name": "Masala Buttermilk",
+      "description": "Chilled churned curd with ginger, coriander, and asafoetida.",
+      "relative_path": "drinks/masala-buttermilk.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 142238
+    },
+    {
+      "filename": "elaneer-payasam.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Elaneer Payasam",
+      "description": "Tender coconut and condensed milk kheer.",
+      "relative_path": "desserts/elaneer-payasam.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 105664
+    },
+    {
+      "filename": "karupatti-halwa.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Karupatti Halwa",
+      "description": "Tirunelveli palm jaggery wheat halwa.",
+      "relative_path": "desserts/karupatti-halwa.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 214764
+    },
+    {
+      "filename": "filter-coffee-tiramisu.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Filter Coffee Tiramisu",
+      "description": "Tiramisu with ladyfingers soaked in Kumbakonam filter coffee.",
+      "relative_path": "desserts/filter-coffee-tiramisu.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 211572
+    },
+    {
+      "filename": "sizzling-brownie-icecream.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Sizzling Brownie Icecream",
+      "description": "Fudge brownie on cast iron with vanilla ice cream.",
+      "relative_path": "desserts/sizzling-brownie-icecream.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 173008
+    },
+    {
+      "filename": "mango-thendral-cream.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Mango Thendral Cream",
+      "description": "Salem Alphonso mango puree layered with whipped mascarpone.",
+      "relative_path": "desserts/mango-thendral-cream.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 124030
+    },
+    {
+      "filename": "royal-falooda-mahal.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Royal Falooda Mahal",
+      "description": "Falooda with vermicelli, basil seeds, and dry fruits.",
+      "relative_path": "desserts/royal-falooda-mahal.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 162952
+    },
+    {
+      "filename": "gulab-jamun-rabri.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Gulab Jamun Rabri",
+      "description": "Warm khoya jamuns served over chilled saffron rabri.",
+      "relative_path": "desserts/gulab-jamun-rabri.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 162580
+    },
+    {
+      "filename": "ash-gourd-kasi-halwa.webp",
+      "category": "Heritage Desserts",
+      "dish_name": "Ash Gourd Kasi Halwa",
+      "description": "Glossy ash-gourd halwa cooked in pure ghee.",
+      "relative_path": "desserts/ash-gourd-kasi-halwa.webp",
+      "dimensions": {
+        "width": 1024,
+        "height": 1024
+      },
+      "file_size_bytes": 158554
+    }
+  ]
+}
