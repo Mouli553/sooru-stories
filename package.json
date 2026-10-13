@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:core": "node --experimental-strip-types --test tests/pricing.node.test.mjs"
+    "test": "vitest run tests/pricing.test.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
