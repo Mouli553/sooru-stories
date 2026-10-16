@@ -151,7 +151,7 @@ export interface ReservationEmailData {
 }
 
 export async function sendReservationEmail(resData: ReservationEmailData): Promise<{ success: boolean; simulated?: boolean }> {
-  const adminEmail = process.env.RESERVATION_EMAIL || process.env.SUPPORT_EMAIL || "soorustories@gmail.com";
+  const adminEmail = process.env.RESERVATION_EMAIL || process.env.SUPPORT_EMAIL || "moulir607@gmail.com";
 
   const adminHtml = `
     <!DOCTYPE html>

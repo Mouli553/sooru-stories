@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useCart } from "@/lib/cart";
 import { trackLead } from "@/lib/analytics";
 
-const RESTAURANT_EMAIL = "soorustories@gmail.com";
+const RESTAURANT_EMAIL = "moulir607@gmail.com";
 const RESTAURANT_PHONE = "+91 93846 38754";
 
 export default function TableBookingModal() {

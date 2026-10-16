@@ -56,7 +56,7 @@ export default function BookingSection() {
             </p>
 
             <a
-              href="mailto:soorustories@gmail.com?subject=Table%20Reservation%20Enquiry%20%E2%80%94%20Sooru%20%26%20Stories&body=Vanakkam%20Sooru%20%26%20Stories!%0A%0AI%20would%20like%20to%20reserve%20a%20table%20with%20the%20following%20details:%0A%0AGuest%20Name:%20%0ADate:%20%0ATime:%20%0AGuest%20Count:%20%0AContact%20Phone:%20%0A%0AThank%20you!"
+              href="mailto:moulir607@gmail.com?subject=Table%20Reservation%20Enquiry%20%E2%80%94%20Sooru%20%26%20Stories&body=Vanakkam%20Sooru%20%26%20Stories!%0A%0AI%20would%20like%20to%20reserve%20a%20table%20with%20the%20following%20details:%0A%0AGuest%20Name:%20%0ADate:%20%0ATime:%20%0AGuest%20Count:%20%0AContact%20Phone:%20%0A%0AThank%20you!"
               className="btn btn-secondary"
               style={{ width: "100%", justifyContent: "center" }}
             >
