@@ -14,16 +14,20 @@ import {
   MenuCategory,
   DishCollection
 } from "@/lib/menu";
-import { trackAddToCart, trackSelectItem } from "@/lib/analytics";
+import { trackAddToCart, trackSelectItem, trackLead } from "@/lib/analytics";
+
+const RESTAURANT_WHATSAPP = "919384638754";
 
 function MenuContent() {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get("category") || "All";
 
-  const { addToCart } = useCart();
+  const { addToCart, openCart } = useCart();
   const [selectedCat, setSelectedCat] = useState<string>(initialCategory);
   const [searchQuery, setSearchQuery] = useState("");
   const [dietFilter, setDietFilter] = useState<"all" | "veg" | "non-veg">("all");
+  const [tagFilter, setTagFilter] = useState<"all" | "bestseller" | "under-150">("all");
+  const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "spice">("featured");
 
   // Keep state synchronized if URL category parameter changes
   useEffect(() => {
@@ -61,6 +65,7 @@ function MenuContent() {
   const handleBackToCollections = () => {
     setSelectedCat("All");
     setSearchQuery("");
+    setTagFilter("all");
 
     try {
       const url = new URL(window.location.href);
@@ -80,9 +85,9 @@ function MenuContent() {
     }
   };
 
-  // Filtered varieties when inside a category or performing a search
+  // Filtered and sorted varieties
   const filteredVarieties = useMemo(() => {
-    return menuItems.filter((item) => {
+    let list = menuItems.filter((item) => {
       const matchesCategory = selectedCat === "All" || item.category === selectedCat;
       const matchesQuery =
         !searchQuery ||
@@ -93,9 +98,25 @@ function MenuContent() {
         dietFilter === "all" ||
         (dietFilter === "veg" && item.vegetarian) ||
         (dietFilter === "non-veg" && !item.vegetarian);
-      return matchesCategory && matchesQuery && matchesDiet;
+      const matchesTag =
+        tagFilter === "all" ||
+        (tagFilter === "bestseller" && item.bestseller) ||
+        (tagFilter === "under-150" && item.pricePaise <= 15000);
+
+      return matchesCategory && matchesQuery && matchesDiet && matchesTag;
     });
-  }, [selectedCat, searchQuery, dietFilter]);
+
+    // Sorting
+    if (sortBy === "price-asc") {
+      list = [...list].sort((a, b) => a.pricePaise - b.pricePaise);
+    } else if (sortBy === "price-desc") {
+      list = [...list].sort((a, b) => b.pricePaise - a.pricePaise);
+    } else if (sortBy === "spice") {
+      list = [...list].sort((a, b) => (b.spiceLevel || 0) - (a.spiceLevel || 0));
+    }
+
+    return list;
+  }, [selectedCat, searchQuery, dietFilter, tagFilter, sortBy]);
 
   // Active dish collection details
   const activeCollection = useMemo(() => {
@@ -105,6 +126,14 @@ function MenuContent() {
   const handleAdd = (item: MenuItem) => {
     addToCart(item);
     trackAddToCart(item);
+  };
+
+  const handleWhatsAppOrderDish = (item: MenuItem) => {
+    trackLead("whatsapp_menu_dish", { dishId: item.id });
+    const text = encodeURIComponent(
+      `Vanakkam Sooru & Stories! 🙏\nI would like to order: 1x ${item.name} (${formatINR(item.pricePaise)}).\nPlease let me know preparation & delivery time.`
+    );
+    window.open(`https://wa.me/${RESTAURANT_WHATSAPP}?text=${text}`, "_blank");
   };
 
   const isBrowsingAll = selectedCat === "All" && !searchQuery.trim();
@@ -141,109 +170,79 @@ function MenuContent() {
                 Menu Collections
               </button>
               <span style={{ margin: "0 8px" }}>/</span>
-              <span style={{ color: "var(--cream)", fontWeight: 600 }}>
+              <span style={{ color: "var(--cream)" }}>
                 {searchQuery ? `Search: "${searchQuery}"` : activeCollection?.title || selectedCat}
               </span>
             </>
           )}
         </div>
 
-        {/* Section Header */}
-        <div className="section-header" id="menu-header-top" style={{ marginBottom: 36 }}>
-          <div className="eyebrow">The Complete Culinary Archive</div>
-          <h1>Menu &amp; Homestyle Prices</h1>
-          <p className="muted" style={{ maxWidth: 720, margin: "0 auto" }}>
+        {/* Page Header */}
+        <div className="section-header" id="menu-header-top" style={{ textAlign: "center", marginBottom: 36 }}>
+          <div className="eyebrow">
+            {isBrowsingAll ? "South Indian Culinary Heritage" : "Varieties Inside"}
+          </div>
+          <h1 style={{ fontSize: "clamp(34px, 5vw, 48px)", margin: "8px 0" }}>
+            {isBrowsingAll ? "Our Menu & Homestyle Prices" : activeCollection?.title || "Signature Varieties"}
+          </h1>
+          <p className="muted" style={{ maxWidth: 640, margin: "0 auto", fontSize: 15.5 }}>
             {isBrowsingAll
-              ? "Select any signature dish collection below to explore its traditional regional varieties, homestyle prices, stone-ground preparations, and medicinal benefits."
-              : "Slow-cooked to order with cold-pressed gingelly oil, pure country ghee, and freshly ground spices. Honest homestyle pricing with zero hidden packing charges."}
+              ? "Select any signature dish family below to explore its traditional simmering varieties, heritage preparations, and honest pricing."
+              : activeCollection?.description || "Simmered fresh to order in traditional clay pots."}
           </p>
-        </div>
 
-        {/* Search Bar with Live UTM Term Sync */}
-        <div style={{ maxWidth: 640, margin: "0 auto 32px" }}>
-          <input
-            type="search"
-            placeholder="🔍 Search across all 64 dishes (e.g. biryani, milagu rasam, bun parotta)..."
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              if (e.target.value.trim().length > 2) {
-                try {
-                  const url = new URL(window.location.href);
-                  url.searchParams.set("utm_source", "sooru_stories");
-                  url.searchParams.set("utm_medium", "search");
-                  url.searchParams.set("utm_campaign", "menu_homestyle");
-                  url.searchParams.set("utm_term", e.target.value.trim());
-                  window.history.replaceState(null, "", url.toString());
-                } catch {
-                  // safe fallback
-                }
-              }
-            }}
-            className="form-control"
-            style={{
-              padding: "14px 22px",
-              borderRadius: "var(--radius-full)",
-              fontSize: 15,
-              background: "#faf8f3",
-              border: "1px solid #ded3c5",
-              boxShadow: "0 4px 18px rgba(48,37,30,0.06)"
-            }}
-          />
+          {/* Quick Search Bar */}
+          <div style={{ maxWidth: 460, margin: "24px auto 0", position: "relative" }}>
+            <input
+              type="text"
+              placeholder="Search dishes (e.g. Kozhi, Rasam, Biryani, Kola Urundai)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="form-control"
+              style={{
+                width: "100%",
+                padding: "12px 18px",
+                borderRadius: "var(--radius-full)",
+                border: "1px solid rgba(212, 175, 55, 0.3)",
+                background: "rgba(4, 18, 11, 0.7)",
+                color: "var(--cream)",
+                fontSize: 14
+              }}
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                style={{
+                  position: "absolute",
+                  right: 14,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  background: "none",
+                  border: "none",
+                  color: "var(--cream-muted)",
+                  cursor: "pointer",
+                  fontSize: 16
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
 
         {/* =========================================================================
-            STATE 1: MINIMAL MAIN DISH CARDS (DEFAULT VIEW)
-            One main card for each signature dish family
+            STATE 1: MINIMAL DISH COLLECTIONS (1 Main Card per Dish Family)
+            Shown when user is on "All" view and not currently searching
            ========================================================================= */}
         {isBrowsingAll && (
-          <div id="menu-collections">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 24,
-                borderBottom: "1px solid var(--forest-border)",
-                paddingBottom: 14
-              }}
-            >
-              <div>
-                <h3 style={{ fontSize: 20, color: "var(--cream)" }}>
-                  8 Signature Dish Collections
-                </h3>
-                <p className="muted" style={{ fontSize: 13, margin: 0 }}>
-                  Tap any dish card below to enter and reveal its handcrafted varieties
-                </p>
-              </div>
-              <div
-                style={{
-                  fontSize: 12.5,
-                  color: "var(--gold)",
-                  fontWeight: 600,
-                  background: "var(--gold-glow)",
-                  padding: "6px 14px",
-                  borderRadius: "var(--radius-full)",
-                  border: "1px solid rgba(163, 78, 54, 0.2)"
-                }}
-              >
-                64 Regional Dishes Total
-              </div>
-            </div>
-
-            <div className="minimal-collection-grid">
+          <div id="menu-collections-overview">
+            <div className="minimal-collections-grid">
               {dishCollections.map((col) => (
                 <article
                   key={col.slug}
                   className="minimal-collection-card"
                   onClick={() => handleEnterCategory(col.category, col.slug)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      handleEnterCategory(col.category, col.slug);
-                    }
-                  }}
                 >
                   <div className="minimal-collection-media">
                     <Image
@@ -311,7 +310,7 @@ function MenuContent() {
 
         {/* =========================================================================
             STATE 2: DISH VARIETIES INSIDE (OR ACTIVE SEARCH)
-            Shows the exact varieties of the selected dish collection
+            Shows the exact varieties of the selected dish collection with rich e-commerce controls
            ========================================================================= */}
         {(!isBrowsingAll) && (
           <div id="menu-active-view">
@@ -337,30 +336,70 @@ function MenuContent() {
                 </div>
               </div>
 
-              {/* Dietary Filter Buttons */}
-              <div className="variety-diet-filters">
-                <button
-                  type="button"
-                  className={`diet-filter-btn ${dietFilter === "all" ? "active" : ""}`}
-                  onClick={() => setDietFilter("all")}
+              {/* Dietary Filter Buttons & E-Commerce Sort Dropdown */}
+              <div className="variety-diet-filters" style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+                <div style={{ display: "flex", gap: 6 }}>
+                  <button
+                    type="button"
+                    className={`diet-filter-btn ${dietFilter === "all" ? "active" : ""}`}
+                    onClick={() => setDietFilter("all")}
+                  >
+                    All ({filteredVarieties.length})
+                  </button>
+                  <button
+                    type="button"
+                    className={`diet-filter-btn veg ${dietFilter === "veg" ? "active" : ""}`}
+                    onClick={() => setDietFilter("veg")}
+                  >
+                    🌿 Pure Veg
+                  </button>
+                  <button
+                    type="button"
+                    className={`diet-filter-btn nonveg ${dietFilter === "non-veg" ? "active" : ""}`}
+                    onClick={() => setDietFilter("non-veg")}
+                  >
+                    🍗 Non-Veg
+                  </button>
+                </div>
+
+                {/* E-Commerce Sorting Selector */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as "featured" | "price-asc" | "price-desc" | "spice")}
+                  className="menu-sort-select"
+                  aria-label="Sort dishes"
                 >
-                  All ({filteredVarieties.length})
-                </button>
-                <button
-                  type="button"
-                  className={`diet-filter-btn veg ${dietFilter === "veg" ? "active" : ""}`}
-                  onClick={() => setDietFilter("veg")}
-                >
-                  🌿 Pure Veg
-                </button>
-                <button
-                  type="button"
-                  className={`diet-filter-btn nonveg ${dietFilter === "non-veg" ? "active" : ""}`}
-                  onClick={() => setDietFilter("non-veg")}
-                >
-                  🍗 Non-Veg
-                </button>
+                  <option value="featured">Sort: Featured</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                  <option value="spice">Spiciness Level</option>
+                </select>
               </div>
+            </div>
+
+            {/* Quick Tag Filter Chips (Bestsellers, Under ₹150) */}
+            <div className="menu-sub-filters">
+              <button
+                type="button"
+                className={`sub-filter-chip ${tagFilter === "all" ? "active" : ""}`}
+                onClick={() => setTagFilter("all")}
+              >
+                All Varieties
+              </button>
+              <button
+                type="button"
+                className={`sub-filter-chip ${tagFilter === "bestseller" ? "active" : ""}`}
+                onClick={() => setTagFilter("bestseller")}
+              >
+                🔥 Chef Bestsellers
+              </button>
+              <button
+                type="button"
+                className={`sub-filter-chip ${tagFilter === "under-150" ? "active" : ""}`}
+                onClick={() => setTagFilter("under-150")}
+              >
+                🏷️ Under ₹150
+              </button>
             </div>
 
             {/* Quick Switcher Between Categories */}
@@ -401,6 +440,7 @@ function MenuContent() {
                   onClick={() => {
                     setSearchQuery("");
                     setDietFilter("all");
+                    setTagFilter("all");
                   }}
                 >
                   Clear Filters
@@ -426,6 +466,8 @@ function MenuContent() {
                       {item.bestseller && (
                         <span className="bestseller-badge">⭐ Bestseller</span>
                       )}
+                      
+                      {/* E-Commerce Spice Indicator */}
                       {item.spiceLevel && (
                         <span
                           style={{
@@ -442,10 +484,31 @@ function MenuContent() {
                           {"🌶️".repeat(item.spiceLevel)}
                         </span>
                       )}
+
+                      {/* E-Commerce Servings Badge */}
+                      <span
+                        style={{
+                          position: "absolute",
+                          bottom: 10,
+                          left: 10,
+                          background: "rgba(4, 18, 11, 0.8)",
+                          borderRadius: 6,
+                          padding: "2px 7px",
+                          fontSize: 10.5,
+                          color: "var(--cream)",
+                          border: "1px solid rgba(255, 255, 255, 0.15)"
+                        }}
+                      >
+                        👥 Serves 1–2
+                      </span>
                     </div>
 
                     <div className="product-card-body">
-                      <div className="product-category-tag">{item.category}</div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                        <span className="product-category-tag">{item.category}</span>
+                        <span style={{ fontSize: 11.5, color: "var(--gold)", fontWeight: 600 }}>⭐ 4.9 (120+)</span>
+                      </div>
+
                       <h3 className="product-card-title">
                         <Link
                           href={`/menu/${item.slug}?utm_source=sooru_stories&utm_medium=variety_dish_card&utm_campaign=menu_homestyle&utm_content=${item.slug.replace(/-/g, "_")}`}
@@ -463,15 +526,23 @@ function MenuContent() {
                       )}
 
                       <div className="product-card-footer">
-                        <span className="card-price">{formatINR(item.pricePaise)}</span>
-                        <div style={{ display: "flex", gap: 8 }}>
-                          <Link
-                            href={`/menu/${item.slug}?utm_source=sooru_stories&utm_medium=variety_dish_card&utm_campaign=menu_homestyle&utm_content=${item.slug.replace(/-/g, "_")}`}
-                            className="btn btn-secondary btn-sm"
-                            style={{ padding: "8px 12px", fontSize: 12 }}
+                        <div>
+                          <span className="card-price">{formatINR(item.pricePaise)}</span>
+                          <div style={{ fontSize: 10.5, color: "var(--cream-muted)" }}>⏱️ 20–25m prep</div>
+                        </div>
+
+                        {/* Dual Action: WhatsApp 1-Click Order + Add to Cart */}
+                        <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                          <button
+                            type="button"
+                            className="card-wa-btn"
+                            onClick={() => handleWhatsAppOrderDish(item)}
+                            title="Order this dish on WhatsApp"
+                            aria-label={`Order ${item.name} on WhatsApp`}
                           >
-                            Story →
-                          </Link>
+                            💬
+                          </button>
+
                           <button
                             type="button"
                             className="add-cart-btn"

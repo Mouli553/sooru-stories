@@ -126,7 +126,10 @@ export function trackPurchase(
   });
 }
 
-export function trackLead(type: "table_booking" | "catering_enquiry" | "whatsapp_chat", metadata: Record<string, unknown> = {}) {
+export function trackLead(
+  type: "table_booking" | "catering_enquiry" | "whatsapp_chat" | "whatsapp_cart_order" | "whatsapp_dish_order" | string,
+  metadata: Record<string, unknown> = {}
+) {
   trackEvent("generate_lead", {
     lead_type: type,
     ...metadata

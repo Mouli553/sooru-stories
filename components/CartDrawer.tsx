@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { formatINR, menuItems, MenuItem } from "@/lib/menu";
-import { trackBeginCheckout, trackAddToCart } from "@/lib/analytics";
+import { trackBeginCheckout, trackAddToCart, trackLead } from "@/lib/analytics";
 
 const FREE_DELIVERY_THRESHOLD_PAISE = 50000; // ₹500
+const RESTAURANT_WHATSAPP = "919384638754";
 
 export default function CartDrawer() {
   const {
@@ -22,6 +23,9 @@ export default function CartDrawer() {
     totalItems,
     openOrderModal
   } = useCart();
+
+  const [cookingNote, setCookingNote] = useState("");
+  const [kitchenTipPaise, setKitchenTipPaise] = useState(0);
 
   // Curated quick recommendations: popular items that aren't yet in the cart
   const upsellItems = useMemo(() => {
@@ -41,12 +45,44 @@ export default function CartDrawer() {
   const freeDeliveryRemaining = Math.max(0, FREE_DELIVERY_THRESHOLD_PAISE - subtotalPaise);
   const freeDeliveryPercent = Math.min(100, (subtotalPaise / FREE_DELIVERY_THRESHOLD_PAISE) * 100);
   const deliveryFee = freeDeliveryRemaining === 0 || items.length === 0 ? 0 : 4000;
-  const grandTotal = subtotalPaise + deliveryFee;
+  const grandTotal = subtotalPaise + deliveryFee + kitchenTipPaise;
 
   const handleCheckoutClick = () => {
     trackBeginCheckout(items, subtotalPaise);
     closeCart();
     openOrderModal();
+  };
+
+  const handleWhatsAppInstantOrder = () => {
+    trackLead("whatsapp_cart_order", { itemsCount: totalItems, totalPaise: grandTotal });
+
+    let message = `*VANAKKAM SOORU & STORIES!* 🙏\n`;
+    message += `I would like to place a fresh kitchen order:\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `🍲 *ORDERED DISHES:*\n`;
+
+    items.forEach((item) => {
+      message += `• ${item.quantity}x ${item.product.name} (${formatINR(item.product.pricePaise * item.quantity)})\n`;
+    });
+
+    message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `💵 *Subtotal:* ${formatINR(subtotalPaise)}\n`;
+    message += `🛵 *Delivery:* ${deliveryFee === 0 ? "FREE" : formatINR(deliveryFee)}\n`;
+    if (kitchenTipPaise > 0) {
+      message += `❤️ *Kitchen Staff Tip:* ${formatINR(kitchenTipPaise)}\n`;
+    }
+    message += `💰 *TOTAL PAYABLE:* ${formatINR(grandTotal)}\n`;
+
+    if (cookingNote.trim()) {
+      message += `📝 *Cooking Notes:* ${cookingNote.trim()}\n`;
+    }
+
+    message += `━━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `📍 *Delivery Address:* [Please enter your street name & area in Sathyamangalam/nearby]\n`;
+    message += `🙏 *Please confirm estimated delivery time & preparation!*`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/${RESTAURANT_WHATSAPP}?text=${encoded}`, "_blank");
   };
 
   const handleQuickAdd = (product: MenuItem) => {
@@ -247,6 +283,40 @@ export default function CartDrawer() {
                   </div>
                 </div>
               ))}
+
+              {/* Cooking Instructions / Chef Note */}
+              <div className="cart-instruction-wrap">
+                <label className="cart-instruction-label">
+                  <span>📝</span> Cooking Notes / Special Requests:
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g., Less spicy rasam, extra lime, separate salna..."
+                  value={cookingNote}
+                  onChange={(e) => setCookingNote(e.target.value)}
+                  className="cart-instruction-input"
+                />
+              </div>
+
+              {/* Tip the Kitchen Artisans */}
+              <div className="cart-tip-wrap">
+                <div className="cart-tip-header">
+                  <span>❤️ Support the Kitchen Team</span>
+                  <small>100% goes directly to our chefs &amp; helpers</small>
+                </div>
+                <div className="tip-chips">
+                  {[0, 2000, 3000, 5000].map((amount) => (
+                    <button
+                      key={amount}
+                      type="button"
+                      className={`tip-chip ${kitchenTipPaise === amount ? "active" : ""}`}
+                      onClick={() => setKitchenTipPaise(amount)}
+                    >
+                      {amount === 0 ? "No Tip" : `₹${amount / 100}`}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Quick-Add Pairings */}
@@ -289,21 +359,9 @@ export default function CartDrawer() {
 
             {/* Footer & Order Summary */}
             <div className="drawer-footer">
-              <div
-                style={{
-                  padding: "8px 12px",
-                  background: "#eadecf",
-                  borderRadius: 6,
-                  fontSize: 12,
-                  color: "#544436",
-                  marginBottom: 14,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8
-                }}
-              >
+              <div className="packaging-notice">
                 <span>🍃</span>
-                <span>Freshly cut plantain leaf packaging included with every meal.</span>
+                <span>Fresh plantain leaf dining kit &amp; clay pot insulation included.</span>
               </div>
 
               <div className="summary-row">
@@ -325,24 +383,42 @@ export default function CartDrawer() {
                 </span>
               </div>
 
+              {kitchenTipPaise > 0 && (
+                <div className="summary-row" style={{ color: "#2e7d32" }}>
+                  <span>Kitchen Team Tip</span>
+                  <span>+{formatINR(kitchenTipPaise)}</span>
+                </div>
+              )}
+
               <div className="summary-row total">
                 <span>Total Amount</span>
                 <span>{formatINR(grandTotal)}</span>
               </div>
 
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "100%", fontSize: 15, padding: "14px 20px" }}
-                onClick={handleCheckoutClick}
-              >
-                Proceed to Checkout ({formatINR(grandTotal)}) →
-              </button>
+              {/* Two E-Commerce Checkout Options: Online/COD & 1-Click WhatsApp */}
+              <div className="drawer-checkout-buttons">
+                <button
+                  type="button"
+                  className="btn btn-primary drawer-main-checkout-btn"
+                  onClick={handleCheckoutClick}
+                >
+                  Proceed to Checkout ({formatINR(grandTotal)}) →
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-whatsapp drawer-wa-checkout-btn"
+                  onClick={handleWhatsAppInstantOrder}
+                  title="1-Click WhatsApp Order"
+                >
+                  <span>⚡</span> 1-Click Order via WhatsApp
+                </button>
+              </div>
 
               <div className="drawer-trust-strip">
                 <span>🌿 100% Homestyle</span>
                 <span>⏱️ 35–45 min Delivery</span>
-                <span>🛡️ Safe &amp; Hygienic</span>
+                <span>🛡️ Safe &amp; Contactless</span>
               </div>
             </div>
           </>
