@@ -5,7 +5,7 @@ describe("Validation Schemas", () => {
   it("accepts valid delivery order payload", () => {
     const validOrder = {
       customerName: "Ramesh Kumar",
-      customerPhone: "9876543210",
+      customerPhone: "9384638754",
       customerEmail: "ramesh@example.com",
       fulfilmentMode: "delivery" as const,
       deliveryAddress: {
@@ -28,7 +28,7 @@ describe("Validation Schemas", () => {
   it("rejects order with empty items array", () => {
     const emptyOrder = {
       customerName: "Ramesh Kumar",
-      customerPhone: "9876543210",
+      customerPhone: "9384638754",
       fulfilmentMode: "pickup" as const,
       items: []
     };
@@ -40,7 +40,7 @@ describe("Validation Schemas", () => {
   it("rejects item quantities exceeding 25", () => {
     const excessiveOrder = {
       customerName: "Ramesh Kumar",
-      customerPhone: "9876543210",
+      customerPhone: "9384638754",
       fulfilmentMode: "pickup" as const,
       items: [{ productId: "biryani-ambur", quantity: 99 }]
     };

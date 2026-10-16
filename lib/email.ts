@@ -111,7 +111,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
         </div>
 
         <div style="text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid rgba(212, 175, 55, 0.2); font-size: 12px; color: #8F8778;">
-          <p>Need to modify your order? Message our WhatsApp dispatch directly at <strong>+91 98765 43210</strong></p>
+          <p>Need to modify your order? Message our WhatsApp dispatch directly at <strong>+91 93846 38754</strong></p>
           <p>© ${new Date().getFullYear()} Sooru &amp; Stories. Sathyamangalam &amp; Coimbatore, Tamil Nadu.</p>
         </div>
       </div>
@@ -134,6 +134,64 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     return { success: true, messageId: data.data?.id };
   } catch (error) {
     console.error("Resend Email Sending Error:", error);
+    return { success: false };
+  }
+}
+
+export interface ReservationEmailData {
+  bookingId: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  date: string;
+  time: string;
+  guests: string;
+  occasion: string;
+  notes?: string;
+}
+
+export async function sendReservationEmail(resData: ReservationEmailData): Promise<{ success: boolean; simulated?: boolean }> {
+  const adminEmail = process.env.RESERVATION_EMAIL || process.env.SUPPORT_EMAIL || "soorustories@gmail.com";
+
+  const adminHtml = `
+    <!DOCTYPE html>
+    <html>
+    <head><meta charset="utf-8"><title>Table Reservation #${resData.bookingId}</title></head>
+    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1ece3; color: #30251e; margin: 0; padding: 24px;">
+      <div style="max-width: 600px; margin: 0 auto; background-color: #faf8f3; border: 1px solid #d9cfc2; border-radius: 12px; overflow: hidden; padding: 32px;">
+        <h2 style="color: #a34e36; margin-top: 0;">New Table Reservation #${resData.bookingId}</h2>
+        <p>A new table reservation request has been submitted:</p>
+        <ul style="line-height: 1.8; list-style: none; padding-left: 0;">
+          <li><strong>Guest:</strong> ${resData.customerName}</li>
+          <li><strong>Email:</strong> ${resData.customerEmail}</li>
+          <li><strong>Phone:</strong> ${resData.customerPhone}</li>
+          <li><strong>Date:</strong> ${resData.date}</li>
+          <li><strong>Time:</strong> ${resData.time}</li>
+          <li><strong>Party Size:</strong> ${resData.guests}</li>
+          <li><strong>Occasion:</strong> ${resData.occasion}</li>
+          ${resData.notes ? `<li><strong>Notes:</strong> ${resData.notes}</li>` : ""}
+        </ul>
+        <p style="margin-top: 24px; font-size: 13px; color: #786d62;">Direct Host Line: +91 93846 38754</p>
+      </div>
+    </body>
+    </html>
+  `;
+
+  if (!resend) {
+    console.log(`[SIMULATED EMAIL] Table Reservation #${resData.bookingId} for ${resData.customerName} (${resData.customerEmail})`);
+    return { success: true, simulated: true };
+  }
+
+  try {
+    await resend.emails.send({
+      from: emailFrom,
+      to: adminEmail,
+      subject: `New Table Reservation: #${resData.bookingId} — ${resData.customerName}`,
+      html: adminHtml
+    });
+    return { success: true };
+  } catch (error) {
+    console.error("Reservation Email Error:", error);
     return { success: false };
   }
 }

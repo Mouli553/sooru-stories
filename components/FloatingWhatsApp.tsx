@@ -3,7 +3,7 @@
 import React from "react";
 import { trackLead } from "@/lib/analytics";
 
-const RESTAURANT_WHATSAPP = "919876543210";
+const RESTAURANT_WHATSAPP = "919384638754";
 
 export default function FloatingWhatsApp() {
   const handleClick = () => {

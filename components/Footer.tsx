@@ -60,12 +60,12 @@ export default function Footer() {
             <div style={{ marginTop: 20 }}>
               <div style={{ fontSize: 12, color: "var(--cream-muted)" }}>Direct WhatsApp Concierge:</div>
               <a 
-                href="https://wa.me/919876543210?text=Hello%20Sooru%20%26%20Stories!%20I%20would%20like%20to%20enquire%20about%20ordering."
+                href="https://wa.me/919384638754?text=Hello%20Sooru%20%26%20Stories!%20I%20would%20like%20to%20enquire%20about%20ordering."
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "var(--gold)", fontWeight: 700, fontSize: 14 }}
               >
-                +91 98765 43210 💬
+                +91 93846 38754 💬
               </a>
             </div>
           </div>

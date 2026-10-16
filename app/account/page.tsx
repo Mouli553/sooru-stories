@@ -175,7 +175,7 @@ export default function AccountPage() {
 
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <a
-                        href={`https://wa.me/919876543210?text=Vanakkam!%20Checking%20status%20for%20Order%20%23${ord.orderNumber}`}
+                        href={`https://wa.me/919384638754?text=Vanakkam!%20Checking%20status%20for%20Order%20%23${ord.orderNumber}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ fontSize: 13, color: "var(--gold-light)", fontWeight: 600 }}
@@ -225,7 +225,7 @@ export default function AccountPage() {
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   className="form-control"
-                  placeholder="e.g. 9876543210"
+                  placeholder="e.g. 9384638754"
                 />
               </div>
 

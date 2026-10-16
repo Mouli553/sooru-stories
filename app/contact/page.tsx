@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { trackLead } from "@/lib/analytics";
 
-const RESTAURANT_WHATSAPP = "919876543210";
+const RESTAURANT_WHATSAPP = "919384638754";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 href={`https://wa.me/${RESTAURANT_WHATSAPP}`}
                 style={{ fontSize: 17, color: "var(--gold-light)", fontWeight: 700, marginTop: 4, display: "block" }}
               >
-                +91 98765 43210 💬
+                +91 93846 38754 💬
               </a>
             </div>
 
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 9876543210"
+                    placeholder="e.g. 9384638754"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="form-control"

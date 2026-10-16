@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-const RESTAURANT_WHATSAPP = "919876543210";
+const RESTAURANT_WHATSAPP = "919384638754";
 
 export default function OrderModal() {
   const {
@@ -427,7 +427,7 @@ export default function OrderModal() {
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. 9876543210"
+                  placeholder="e.g. 9384638754"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="form-control"

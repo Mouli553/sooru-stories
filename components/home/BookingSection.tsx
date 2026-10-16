@@ -52,17 +52,15 @@ export default function BookingSection() {
           >
             <h3 style={{ color: "var(--gold)" }}>Direct Table Enquiry</h3>
             <p className="muted" style={{ fontSize: 13.5 }}>
-              Need urgent weekend reservations or bulk corporate catering bookings? Chat directly with our host on WhatsApp for immediate confirmation.
+              Need weekend reservations, private dining, or bulk corporate catering bookings? Email our host team directly for prompt confirmation.
             </p>
 
             <a
-              href="https://wa.me/919876543210?text=Vanakkam%20Sooru%20%26%20Stories!%20I%20would%20like%20to%20reserve%20a%20table%20for%20dinner."
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:soorustories@gmail.com?subject=Table%20Reservation%20Enquiry%20%E2%80%94%20Sooru%20%26%20Stories&body=Vanakkam%20Sooru%20%26%20Stories!%0A%0AI%20would%20like%20to%20reserve%20a%20table%20with%20the%20following%20details:%0A%0AGuest%20Name:%20%0ADate:%20%0ATime:%20%0AGuest%20Count:%20%0AContact%20Phone:%20%0A%0AThank%20you!"
               className="btn btn-secondary"
               style={{ width: "100%", justifyContent: "center" }}
             >
-              Quick WhatsApp Reservation 💬
+              Email Table Enquiry ✉
             </a>
 
             <div style={{ padding: "16px", background: "rgba(212, 175, 55, 0.08)", borderRadius: "var(--radius-sm)", borderLeft: "3px solid var(--gold)", fontSize: 13, color: "var(--gold-shimmer)" }}>
