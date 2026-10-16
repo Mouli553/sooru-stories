@@ -1020,6 +1020,121 @@ export const categories: MenuCategory[] = [
   "Desserts"
 ];
 
+export interface DishCollection {
+  category: MenuCategory;
+  slug: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  startingPricePaise: number;
+  itemCount: number;
+  sampleHighlights: string[];
+  heritageTag: string;
+}
+
+export const dishCollections: DishCollection[] = [
+  {
+    category: "Digest & Eat",
+    slug: "digest-and-eat",
+    title: "Digest & Eat — 8 Ancient Herbal Healing Elixirs",
+    subtitle: "Ancient Herbal Rasam Potions",
+    description: "Millennia-old digestive healing broths brewed slow in heritage earthenware with hand-ground herbs.",
+    image: "/images/rasam-chronicles.jpg",
+    startingPricePaise: 7000,
+    itemCount: 8,
+    sampleHighlights: ["Thakkali Rasam", "Pacha Puli", "Tellicherry Milagu", "Kollu Horsegram"],
+    heritageTag: "Ayurvedic Agni"
+  },
+  {
+    category: "Signature Starters",
+    slug: "signature-starters",
+    title: "Signature Starters & Crisp Roasts",
+    subtitle: "Madurai & Chettinad Appetizers",
+    description: "Crispy shallow-fried village appetizers, sizzling chukkas, and stone-ground podi roasted bites.",
+    image: "/images/starters-madurai.jpg",
+    startingPricePaise: 14000,
+    itemCount: 8,
+    sampleHighlights: ["Madurai Mutton Chukka", "Nethili Meen Varuval", "Kozhi Chinthamani", "Paneer Ghee Roast"],
+    heritageTag: "Cast Iron Crisp"
+  },
+  {
+    category: "Signature Non-Veg",
+    slug: "signature-non-veg",
+    title: "Signature Non-Veg Heritage Curries",
+    subtitle: "Kongu & Chettinad Clay Pot Kulambus",
+    description: "Slow-simmered country chicken, goat bone paya, and coastal fish gravies with hand-pounded masalas.",
+    image: "/images/hero-feast.jpg",
+    startingPricePaise: 19000,
+    itemCount: 8,
+    sampleHighlights: ["Nattu Kozhi Kulambu", "Kongu Mutton Curry", "Chettinad Meen Kulambu", "Attukal Paya"],
+    heritageTag: "Earthen Pot Stew"
+  },
+  {
+    category: "Biryani & Rice",
+    slug: "biryani-and-rice",
+    title: "Royal Seeraga Samba Biryani & Dum Pots",
+    subtitle: "Fragrant Heritage Tiny-Grain Dum Rice",
+    description: "Authentic short-grain Seeraga Samba dum biryanis cooked over gentle charcoal with pure country ghee.",
+    image: "/images/biryani-royal.jpg",
+    startingPricePaise: 12000,
+    itemCount: 8,
+    sampleHighlights: ["Ambur Royal Biryani", "Dindigul Thalappakatti", "Rawther Dum", "Malabar Neychoru"],
+    heritageTag: "Woodfire Dum"
+  },
+  {
+    category: "South Indian Specials",
+    slug: "south-indian-specials",
+    title: "South Indian Parotta & Dosa Specials",
+    subtitle: "Flaky Breads, Crisp Dosas & Steamed Idlis",
+    description: "Golden flaky Madurai bun parottas, ghee-dripping podi thatte idlis, and crisp Karuveppilai dosas.",
+    image: "/images/specials-south-indian.jpg",
+    startingPricePaise: 5000,
+    itemCount: 8,
+    sampleHighlights: ["Madurai Bun Parotta", "Kothu Parotta", "Karuveppilai Dosa", "Thatte Idli"],
+    heritageTag: "Tawa Fresh"
+  },
+  {
+    category: "Modern Fusion",
+    slug: "modern-fusion",
+    title: "Modern Street Fusion & Global Tacos",
+    subtitle: "Contemporary Tamil Street Food",
+    description: "Playful culinary intersections: Chettinad chicken baos, ghee roast street tacos, and gunpowder fries.",
+    image: "/images/hero-feast.jpg",
+    startingPricePaise: 13000,
+    itemCount: 8,
+    sampleHighlights: ["Chettinad Chicken Bao", "Ghee Roast Taco", "Rasam Golgappa Shots", "Gunpowder Corn Ribs"],
+    heritageTag: "Chef's Craft"
+  },
+  {
+    category: "Mocktails",
+    slug: "mocktails",
+    title: "Heritage Coolers & Botanical Sharbat",
+    subtitle: "Native Refreshers & Root Elixirs",
+    description: "Cooling Nannari roots, creamy Madurai Jigarthanda, spiced panakam, and fresh tender coconut water.",
+    image: "/images/drinks-mocktails.jpg",
+    startingPricePaise: 6000,
+    itemCount: 8,
+    sampleHighlights: ["Nannari Sarbath", "Jigarthanda Royale", "Panakam Cooler", "Elaneer Payasam Cooler"],
+    heritageTag: "Root Botanicals"
+  },
+  {
+    category: "Desserts",
+    slug: "desserts",
+    title: "Artisanal Desserts & Traditional Halwa",
+    subtitle: "Palm Jaggery Sweets & Pure Ghee Halwas",
+    description: "Tirunelveli palm jaggery halwa, fragrant tender coconut payasam, and artisanal Tamil sweets.",
+    image: "/images/hero-feast.jpg",
+    startingPricePaise: 11000,
+    itemCount: 8,
+    sampleHighlights: ["Elaneer Payasam", "Karupatti Halwa", "Filter Coffee Tiramisu", "Ash Gourd Kasi Halwa"],
+    heritageTag: "Pure Ghee"
+  }
+];
+
+export const getCollectionByCategory = (category: string) =>
+  dishCollections.find((c) => c.category === category || c.slug === category);
+
 export const formatINR = (paise: number) =>
   new Intl.NumberFormat("en-IN", {
     style: "currency",

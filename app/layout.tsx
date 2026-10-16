@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart";
@@ -9,6 +10,7 @@ import TableBookingModal from "@/components/TableBookingModal";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import ToastContainer from "@/components/ToastContainer";
 import SpiceCanvas from "@/components/SpiceCanvas";
+import UtmScrollTracker from "@/components/UtmScrollTracker";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sooru-stories.vercel.app"),
@@ -105,6 +107,9 @@ export default function RootLayout({
       </head>
       <body>
         <CartProvider>
+          <Suspense fallback={null}>
+            <UtmScrollTracker />
+          </Suspense>
           <SpiceCanvas />
           <Header />
           <main id="main-content">{children}</main>
