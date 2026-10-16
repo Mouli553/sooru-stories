@@ -216,33 +216,93 @@ input, textarea, select {
 }
 
 .cart-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(212, 175, 55, 0.12);
-  border: 1px solid var(--gold);
-  color: var(--gold-light);
-  padding: 9px 18px;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 14px;
-  transition: var(--transition);
+  gap: 8px;
+  background: linear-gradient(135deg, #a34e36 0%, #853d2b 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.45) !important;
+  color: #fffaf4 !important;
+  padding: 9px 18px !important;
+  border-radius: var(--radius-full) !important;
+  font-weight: 700 !important;
+  font-size: 13.5px !important;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(163, 78, 54, 0.28) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative;
+  text-decoration: none;
 }
 
 .cart-btn:hover {
-  background: var(--gold);
-  color: var(--forest-deep);
+  background: linear-gradient(135deg, #b8573d 0%, #99432e 100%) !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 6px 20px rgba(163, 78, 54, 0.42), 0 0 10px rgba(212, 175, 55, 0.3) !important;
+  border-color: #d4af37 !important;
+  color: #ffffff !important;
+}
+
+.cart-btn:active {
+  transform: translateY(0);
+}
+
+.cart-icon-svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cart-btn:hover .cart-icon-svg {
+  transform: scale(1.1);
+}
+
+.cart-btn-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 .cart-badge {
-  background: var(--coral);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: var(--radius-full);
+  background: #d4af37 !important;
+  color: #1a0f07 !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px !important;
+  border-radius: 999px !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  margin-left: 2px;
+}
+
+.nav-btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  display: inline-block;
+}
+
+.footer-btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--cream-soft);
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.footer-btn-link:hover {
+  color: var(--gold);
 }
 
 .mobile-toggle {
@@ -1621,9 +1681,6 @@ body { line-height: 1.65; }
 .nav-links { gap: clamp(14px, 2vw, 30px); font-size: 13px; }
 .nav-link { color: #55483d; }
 .nav-link:hover, .nav-link.active { color: #a34e36; }
-.nav-link::after { height: 1px; background: #a34e36; }
-.cart-btn { background: #30251e; border: 1px solid #30251e; color: #fffaf2; padding: 10px 17px; }
-.cart-btn:hover { background: #a34e36; border-color: #a34e36; color: #fff; box-shadow: none; }
 .mobile-toggle { color: #30251e; }
 
 h1, h2, h3, h4 { color: #30251e; }
@@ -2582,90 +2639,7 @@ div[style*="rgba(4, 18, 11"] { background: #f0e9df !important; color: #55483d; }
    E-COMMERCE ENHANCEMENTS & WHATSAPP DEEP INTEGRATION (+91 9384638754)
    ========================================================================== */
 
-/* Top Announcement Strip */
-.top-announcement-strip {
-  background: linear-gradient(90deg, #020b06 0%, #061f12 50%, #020b06 100%);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  color: var(--cream);
-  font-size: 12px;
-  padding: 6px 20px;
-  position: relative;
-  z-index: 102;
-}
-.announcement-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.announcement-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.live-status-pulse {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #A3E4D7;
-  font-size: 11.5px;
-}
-.live-dot {
-  width: 7px;
-  height: 7px;
-  background: #2E8B57;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #2E8B57;
-  animation: pulse 1.8s infinite;
-}
-.announcement-sep {
-  color: rgba(255, 255, 255, 0.2);
-}
-.announcement-promo {
-  color: var(--gold-light);
-}
-.announcement-area {
-  color: var(--cream-muted);
-}
-.announcement-right {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.top-wa-btn {
-  background: transparent;
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  color: #25D366;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  font-size: 11.5px;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.top-wa-btn:hover {
-  background: rgba(37, 211, 102, 0.15);
-  border-color: #25D366;
-  color: #fff;
-}
-.top-track-link {
-  color: var(--cream-soft);
-  text-decoration: none;
-  font-size: 11.5px;
-  font-weight: 600;
-  transition: var(--transition);
-}
-.top-track-link:hover {
-  color: var(--gold);
-}
-
-/* WhatsApp Buttons System */
+/* WhatsApp Button Styling */
 .btn-whatsapp {
   background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
   color: #FFFFFF !important;
@@ -2685,33 +2659,6 @@ div[style*="rgba(4, 18, 11"] { background: #f0e9df !important; color: #55483d; }
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45) !important;
   transform: translateY(-2px);
   color: #FFFFFF !important;
-}
-
-/* Header WhatsApp Icon Button */
-.header-wa-icon-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  color: #25D366;
-  border-radius: var(--radius-full);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-.header-wa-icon-btn:hover {
-  background: rgba(37, 211, 102, 0.22);
-  border-color: #25D366;
-  color: #FFFFFF;
-}
-.mobile-wa-strip {
-  display: none;
-  padding: 14px 0 0;
-  border-top: 1px solid var(--forest-border);
-  margin-top: 14px;
 }
 
 /* Floating WhatsApp Concierge Popover */

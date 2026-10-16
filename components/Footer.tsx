@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { useCart } from "@/lib/cart";
 
 export default function Footer() {
+  const { openBookingModal } = useCart();
+
   return (
     <footer className="site-footer" id="footer">
       <div className="container">
         <div className="footer-grid">
+          {/* Column 1: Brand & Heritage */}
           <div className="footer-col">
             <Link href="/" className="brand" style={{ marginBottom: 14 }}>
               <div className="brand-title">
@@ -22,6 +28,7 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Column 2: Explore Menu (All verified query routes) */}
           <div className="footer-col">
             <h4>Explore Menu</h4>
             <ul className="footer-links">
@@ -36,20 +43,30 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Column 3: Guest Services */}
           <div className="footer-col">
             <h4>Guest Services</h4>
             <ul className="footer-links">
-              <li><Link href="/#booking">Reserve a Table</Link></li>
+              <li>
+                <button
+                  type="button"
+                  className="footer-btn-link"
+                  onClick={openBookingModal}
+                >
+                  Reserve a Table
+                </button>
+              </li>
               <li><Link href="/#story">Our Culinary Heritage</Link></li>
               <li><Link href="/#testimonials">Customer Reviews</Link></li>
               <li><Link href="/contact">Catering &amp; Bulk Orders</Link></li>
               <li><Link href="/faq">Frequently Asked Questions</Link></li>
-              <li><Link href="/track">🛵 Track Order (Live)</Link></li>
+              <li><Link href="/track">Track Live Order</Link></li>
               <li><Link href="/account">My Account &amp; Past Orders</Link></li>
               <li><Link href="/admin">Kitchen Operations &amp; Admin</Link></li>
             </ul>
           </div>
 
+          {/* Column 4: Policies & Orders */}
           <div className="footer-col">
             <h4>Policies &amp; Orders</h4>
             <ul className="footer-links">
@@ -58,15 +75,15 @@ export default function Footer() {
               <li><Link href="/privacy">Privacy &amp; Data Security</Link></li>
               <li><Link href="/refunds">Cancellations &amp; Refunds</Link></li>
             </ul>
-            <div style={{ marginTop: 20 }}>
-              <div style={{ fontSize: 12, color: "var(--cream-muted)" }}>Direct WhatsApp Concierge:</div>
+            <div style={{ marginTop: 22, paddingTop: 14, borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+              <div style={{ fontSize: 11.5, color: "var(--cream-muted)", textTransform: "uppercase", letterSpacing: 0.5, marginBottom: 4 }}>
+                Kitchen Desk &amp; Helpline
+              </div>
               <a 
-                href="https://wa.me/919384638754?text=Hello%20Sooru%20%26%20Stories!%20I%20would%20like%20to%20enquire%20about%20ordering."
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "var(--gold)", fontWeight: 700, fontSize: 14 }}
+                href="tel:9384638754"
+                style={{ color: "var(--gold-light)", fontWeight: 700, fontSize: 14, textDecoration: "none" }}
               >
-                +91 93846 38754 💬
+                📞 +91 93846 38754
               </a>
             </div>
           </div>

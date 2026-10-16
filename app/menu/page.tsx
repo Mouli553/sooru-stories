@@ -32,8 +32,16 @@ function MenuContent() {
   // Keep state synchronized if URL category parameter changes
   useEffect(() => {
     const cat = searchParams.get("category");
-    if (cat && cat !== selectedCat) {
+    if (cat) {
       setSelectedCat(cat);
+      setTimeout(() => {
+        const targetEl = document.getElementById("menu-active-view");
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 120);
+    } else {
+      setSelectedCat("All");
     }
   }, [searchParams]);
 
