@@ -119,6 +119,51 @@ export async function sendOrderConfirmationEmail(order: OrderEmailData): Promise
     </html>
   `;
 
+  // Also notify restaurant admin via EmailJS silently
+  try {
+    const serviceId = process.env.EMAILJS_SERVICE_ID || "service_1tnij0f";
+    const templateId = process.env.EMAILJS_TEMPLATE_ID || "template_pnixwxg";
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY || "HsrT1U-D1Liv5ehyI";
+    const adminEmail = process.env.RESERVATION_EMAIL || process.env.SUPPORT_EMAIL || "moulir607@gmail.com";
+
+    const itemsSummary = order.items.map((i) => `${i.name} × ${i.quantity} (${formatINR(i.pricePaise * i.quantity)})`).join("\n• ");
+
+    await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": process.env.NEXT_PUBLIC_SITE_URL || "https://sooru-stories.vercel.app"
+      },
+      body: JSON.stringify({
+        service_id: serviceId,
+        template_id: templateId,
+        user_id: publicKey,
+        template_params: {
+          to_email: adminEmail,
+          to_name: "Mouli / Sooru & Stories Host",
+          from_name: "Sooru & Stories Kitchen",
+          reply_to: order.customerEmail,
+          name: order.customerName,
+          customer_name: order.customerName,
+          email: order.customerEmail,
+          customer_email: order.customerEmail,
+          phone: order.customerPhone,
+          customer_phone: order.customerPhone,
+          date: new Date().toLocaleDateString("en-IN"),
+          time: new Date().toLocaleTimeString("en-IN"),
+          guests: `${order.items.length} items (${order.fulfilmentMode})`,
+          occasion: `New Order (${order.paymentMode.toUpperCase()})`,
+          notes: `Delivery Address: ${addressText}`,
+          booking_id: order.orderNumber,
+          order_items: order.items.map((i) => `${i.name} × ${i.quantity}`).join(", "),
+          message: `Vanakkam!\n\nA new online order #${order.orderNumber} has been received:\n\n• Customer: ${order.customerName}\n• Phone: ${order.customerPhone}\n• Email: ${order.customerEmail}\n• Mode: ${order.fulfilmentMode === "delivery" ? "Doorstep Delivery" : "Takeaway"}\n• Address: ${addressText}\n• Total: ${formatINR(order.totalPaise)}\n• Payment: ${order.paymentMode.toUpperCase()}\n\nItems Ordered:\n• ${itemsSummary}`
+        }
+      })
+    });
+  } catch (emailErr) {
+    console.warn("Order EmailJS dispatch error:", emailErr);
+  }
+
   if (!resend) {
     console.log(`[SIMULATED EMAIL] Order Confirmation for #${order.orderNumber} to ${order.customerEmail}`);
     return { success: true, simulated: true };
@@ -151,47 +196,96 @@ export interface ReservationEmailData {
 }
 
 export async function sendReservationEmail(resData: ReservationEmailData): Promise<{ success: boolean; simulated?: boolean }> {
+  const serviceId = process.env.EMAILJS_SERVICE_ID || "service_1tnij0f";
+  const templateId = process.env.EMAILJS_TEMPLATE_ID || "template_pnixwxg";
+  const publicKey = process.env.EMAILJS_PUBLIC_KEY || "HsrT1U-D1Liv5ehyI";
   const adminEmail = process.env.RESERVATION_EMAIL || process.env.SUPPORT_EMAIL || "moulir607@gmail.com";
 
-  const adminHtml = `
-    <!DOCTYPE html>
-    <html>
-    <head><meta charset="utf-8"><title>Table Reservation #${resData.bookingId}</title></head>
-    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1ece3; color: #30251e; margin: 0; padding: 24px;">
-      <div style="max-width: 600px; margin: 0 auto; background-color: #faf8f3; border: 1px solid #d9cfc2; border-radius: 12px; overflow: hidden; padding: 32px;">
-        <h2 style="color: #a34e36; margin-top: 0;">New Table Reservation #${resData.bookingId}</h2>
-        <p>A new table reservation request has been submitted:</p>
-        <ul style="line-height: 1.8; list-style: none; padding-left: 0;">
-          <li><strong>Guest:</strong> ${resData.customerName}</li>
-          <li><strong>Email:</strong> ${resData.customerEmail}</li>
-          <li><strong>Phone:</strong> ${resData.customerPhone}</li>
-          <li><strong>Date:</strong> ${resData.date}</li>
-          <li><strong>Time:</strong> ${resData.time}</li>
-          <li><strong>Party Size:</strong> ${resData.guests}</li>
-          <li><strong>Occasion:</strong> ${resData.occasion}</li>
-          ${resData.notes ? `<li><strong>Notes:</strong> ${resData.notes}</li>` : ""}
-        </ul>
-        <p style="margin-top: 24px; font-size: 13px; color: #786d62;">Direct Host Line: +91 93846 38754</p>
-      </div>
-    </body>
-    </html>
-  `;
+  let emailjsSuccess = false;
 
-  if (!resend) {
-    console.log(`[SIMULATED EMAIL] Table Reservation #${resData.bookingId} for ${resData.customerName} (${resData.customerEmail})`);
-    return { success: true, simulated: true };
-  }
-
+  // 1. Silent EmailJS Dispatch
   try {
-    await resend.emails.send({
-      from: emailFrom,
-      to: adminEmail,
-      subject: `New Table Reservation: #${resData.bookingId} — ${resData.customerName}`,
-      html: adminHtml
+    const res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": process.env.NEXT_PUBLIC_SITE_URL || "https://sooru-stories.vercel.app"
+      },
+      body: JSON.stringify({
+        service_id: serviceId,
+        template_id: templateId,
+        user_id: publicKey,
+        template_params: {
+          to_email: adminEmail,
+          to_name: "Mouli / Sooru & Stories Host",
+          from_name: "Sooru & Stories Reservations",
+          reply_to: resData.customerEmail,
+          name: resData.customerName,
+          customer_name: resData.customerName,
+          email: resData.customerEmail,
+          customer_email: resData.customerEmail,
+          phone: resData.customerPhone,
+          customer_phone: resData.customerPhone,
+          date: resData.date,
+          time: resData.time,
+          guests: resData.guests,
+          occasion: resData.occasion,
+          notes: resData.notes || "None",
+          booking_id: resData.bookingId,
+          order_items: `Table Reservation #${resData.bookingId} (${resData.guests}) on ${resData.date} at ${resData.time}`,
+          message: `Vanakkam!\n\nA new table reservation request #${resData.bookingId} has been booked:\n\n• Guest: ${resData.customerName}\n• Email: ${resData.customerEmail}\n• Phone: ${resData.customerPhone}\n• Date: ${resData.date}\n• Time: ${resData.time}\n• Party Size: ${resData.guests}\n• Occasion: ${resData.occasion}\n• Special Requests: ${resData.notes || "None"}\n\nPlease confirm table seating arrangements.`
+        }
+      })
     });
-    return { success: true };
-  } catch (error) {
-    console.error("Reservation Email Error:", error);
-    return { success: false };
+
+    if (res.ok) {
+      emailjsSuccess = true;
+      console.log(`[EMAILJS SUCCESS] Table Reservation #${resData.bookingId} dispatched to ${adminEmail}`);
+    } else {
+      const errText = await res.text();
+      console.error("[EMAILJS ERROR]", res.status, errText);
+    }
+  } catch (err) {
+    console.error("EmailJS dispatch error:", err);
   }
+
+  // 2. Resend backup if configured
+  if (resend) {
+    const adminHtml = `
+      <!DOCTYPE html>
+      <html>
+      <head><meta charset="utf-8"><title>Table Reservation #${resData.bookingId}</title></head>
+      <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f1ece3; color: #30251e; margin: 0; padding: 24px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #faf8f3; border: 1px solid #d9cfc2; border-radius: 12px; overflow: hidden; padding: 32px;">
+          <h2 style="color: #a34e36; margin-top: 0;">New Table Reservation #${resData.bookingId}</h2>
+          <p>A new table reservation request has been submitted:</p>
+          <ul style="line-height: 1.8; list-style: none; padding-left: 0;">
+            <li><strong>Guest:</strong> ${resData.customerName}</li>
+            <li><strong>Email:</strong> ${resData.customerEmail}</li>
+            <li><strong>Phone:</strong> ${resData.customerPhone}</li>
+            <li><strong>Date:</strong> ${resData.date}</li>
+            <li><strong>Time:</strong> ${resData.time}</li>
+            <li><strong>Party Size:</strong> ${resData.guests}</li>
+            <li><strong>Occasion:</strong> ${resData.occasion}</li>
+            ${resData.notes ? `<li><strong>Notes:</strong> ${resData.notes}</li>` : ""}
+          </ul>
+          <p style="margin-top: 24px; font-size: 13px; color: #786d62;">Direct Host Line: +91 93846 38754</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    try {
+      await resend.emails.send({
+        from: emailFrom,
+        to: adminEmail,
+        subject: `New Table Reservation: #${resData.bookingId} — ${resData.customerName}`,
+        html: adminHtml
+      });
+    } catch (error) {
+      console.warn("Resend Email Backup Error:", error);
+    }
+  }
+
+  return { success: emailjsSuccess || Boolean(resend) };
 }

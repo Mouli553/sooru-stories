@@ -55,13 +55,14 @@ export default function BookingSection() {
               Need weekend reservations, private dining, or bulk corporate catering bookings? Email our host team directly for prompt confirmation.
             </p>
 
-            <a
-              href="mailto:moulir607@gmail.com?subject=Table%20Reservation%20Enquiry%20%E2%80%94%20Sooru%20%26%20Stories&body=Vanakkam%20Sooru%20%26%20Stories!%0A%0AI%20would%20like%20to%20reserve%20a%20table%20with%20the%20following%20details:%0A%0AGuest%20Name:%20%0ADate:%20%0ATime:%20%0AGuest%20Count:%20%0AContact%20Phone:%20%0A%0AThank%20you!"
+            <button
+              type="button"
+              onClick={openBookingModal}
               className="btn btn-secondary"
               style={{ width: "100%", justifyContent: "center" }}
             >
-              Email Table Enquiry ✉
-            </a>
+              Reserve a Table Online ✉
+            </button>
 
             <div style={{ padding: "16px", background: "rgba(212, 175, 55, 0.08)", borderRadius: "var(--radius-sm)", borderLeft: "3px solid var(--gold)", fontSize: 13, color: "var(--gold-shimmer)" }}>
               ⏱️ <strong>Kitchen Hours:</strong> Lunch: 12:00 PM – 3:30 PM | Dinner: 7:00 PM – 10:30 PM
